@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twrp_builder/icons/icon_data.dart';
 import 'dart:async';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -54,7 +55,7 @@ class _ContactFragmentState extends State<ContactFragment> {
                               onPressed: () => setState(() {
                                 _launchURL("https://forum.xda-developers.com/android/apps-games/twrpbuilder-t3744253");
                               }),
-                              icon: Icon(Icons.web),
+                              icon: Icon(xda),
                               label: Text("XDA Thread", style: TextStyle(color: Colors.black, fontSize: 16.0),)
                           ),
                         )
@@ -69,7 +70,7 @@ class _ContactFragmentState extends State<ContactFragment> {
                               onPressed: () => setState(() {
                                 _launchURL("https://github.com/TwrpBuilder");
                               }),
-                              icon: Icon(Icons.code),
+                              icon: Icon(github_circle),
                               label: Text("Source", style: TextStyle(color: Colors.black, fontSize: 16.0),)
                           ),
                         )
@@ -84,7 +85,7 @@ class _ContactFragmentState extends State<ContactFragment> {
                               onPressed: () => setState(() {
                                 _launchURL("https://t.me/TWBuilder");
                               }),
-                              icon: Icon(Icons.group),
+                              icon: Icon(telegram),
                               label: Text("Telegram Support", style: TextStyle(color: Colors.black, fontSize: 16.0),)
                           ),
                         )

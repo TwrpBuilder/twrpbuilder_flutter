@@ -10,6 +10,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   google_sign_in: "^3.0.4"
   firebase_auth: "^0.5.12"
+  firebase_database: ^1.0.2
   url_launcher: ^3.0.3
 
 dev_dependencies:
@@ -60,6 +61,9 @@ flutter:
   # see https://flutter.io/custom-fonts/#from-packages
 
   fonts:
+      - family: MyFlutterApp
+        fonts:
+          - asset: fonts/MyFlutterApp.ttf
       - family: Raleway
         fonts:
           - asset: fonts/Raleway-Black.ttf
