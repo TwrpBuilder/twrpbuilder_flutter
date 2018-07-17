@@ -11,13 +11,14 @@ class HomeFragment extends StatelessWidget {
             body: TabBarView(
               children: [
                 Center(
-                  child: Text("Backup options will be here", textAlign: TextAlign.center,),
+                  child: Text(
+                    "Backup options will be here",
+                    textAlign: TextAlign.center,
+                  ),
                 )
               ],
             ),
-          )
-      ),
+          )),
     );
   }
-
 }

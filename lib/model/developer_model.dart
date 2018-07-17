@@ -1,4 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
+
 class DeveloperModel {
   String email;
   String name;
@@ -12,11 +13,11 @@ class DeveloperModel {
       this.donationUrl, this.description);
 
   DeveloperModel.fromSnapshot(DataSnapshot snapshot)
-    : email = snapshot.value["email"],
-      name = snapshot.value["name"],
-      photoUrl = snapshot.value["photoUrl"],
-      xdaUrl = snapshot.value["xdaUrl"],
-      gitId = snapshot.value["gitId"],
-      donationUrl = snapshot.value["donationUrl"],
-      description = snapshot.value["description"];
+      : email = snapshot.value["email"],
+        name = snapshot.value["name"],
+        photoUrl = snapshot.value["photoUrl"],
+        xdaUrl = snapshot.value["xdaUrl"],
+        gitId = snapshot.value["gitId"],
+        donationUrl = snapshot.value["donationUrl"],
+        description = snapshot.value["description"];
 }

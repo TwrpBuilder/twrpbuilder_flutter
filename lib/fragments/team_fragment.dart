@@ -1,22 +1,19 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:twrp_builder/dev_list_item.dart';
 import 'package:twrp_builder/model/developer_model.dart';
 
-final DatabaseReference developerDatabaseReference = FirebaseDatabase.instance.reference().child('Developers');
+final DatabaseReference developerDatabaseReference =
+    FirebaseDatabase.instance.reference().child('Developers');
 DataSnapshot snapshot;
 
 class TeamFragment extends StatefulWidget {
-
   @override
   _TeamFragmentPage createState() => new _TeamFragmentPage();
-
 }
 
 class _TeamFragmentPage extends State<TeamFragment> {
-
   List<DeveloperModel> devList = new List();
-  ScrollController _listViewScrollController = new ScrollController();
 
 //  _TeamFragmentPage() {
 //    //developerDatabaseReference.onChildChanged.listen(_onEntryAdded);
@@ -26,7 +23,6 @@ class _TeamFragmentPage extends State<TeamFragment> {
 //    }
 //    );
 //  }
-
 
   @override
   void initState() {
@@ -39,15 +35,13 @@ class _TeamFragmentPage extends State<TeamFragment> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new ListView.builder(
-          itemCount: devList.length,
-          itemBuilder: (context, index){
-            return new InkWell(
-              child: new DevListItem(devList[index], snapshot),
-            );
-          }
-      )
-    );
+        body: new ListView.builder(
+            itemCount: devList.length,
+            itemBuilder: (context, index) {
+              return new InkWell(
+                child: new DevListItem(devList[index], snapshot),
+              );
+            }));
   }
 
   _onEntryAdded(Event event) {
@@ -55,7 +49,7 @@ class _TeamFragmentPage extends State<TeamFragment> {
       //devList.add(new DeveloperModel.fromSnapshot(event.snapshot));
       snapshot = event.snapshot;
       Map<String, dynamic> usermap = snapshot.value.cast<String, dynamic>();
-      usermap.forEach((string, dynamic){
+      usermap.forEach((string, dynamic) {
         DeveloperModel developerModel = parseUser(string, dynamic);
         setState(() {
           devList.add(developerModel);
@@ -99,7 +93,7 @@ class _TeamFragmentPage extends State<TeamFragment> {
       }
     });
 
-    return DeveloperModel(email, name, photoUrl, xdaUrl, gitId, donationUrl, description);
+    return DeveloperModel(
+        email, name, photoUrl, xdaUrl, gitId, donationUrl, description);
   }
-
 }

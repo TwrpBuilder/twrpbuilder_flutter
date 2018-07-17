@@ -1,7 +1,8 @@
 import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:twrp_builder/pages/home_page.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -26,7 +27,6 @@ class GoogleLoginPage extends StatefulWidget {
 }
 
 class _GoogleLoginPageState extends State<GoogleLoginPage> {
-
   Future<FirebaseUser> _signInWithGoogle() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication _gSAuth = await googleUser.authentication;
@@ -45,8 +45,8 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
       //Navigator.pop(context);
       Navigator.pushReplacement(context,
           new MaterialPageRoute(builder: (BuildContext context) {
-            return new HomePage();
-          }));
+        return new HomePage();
+      }));
       name = currentUser.displayName;
       email = currentUser.email;
     }
@@ -59,7 +59,9 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
     // TODO: implement build
     return new Scaffold(
       appBar: new AppBar(
-        textTheme: TextTheme(title: TextStyle(color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
+        textTheme: TextTheme(
+            title: TextStyle(
+                color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
         title: new Text("Login"),
         centerTitle: true,
         backgroundColor: Colors.white,

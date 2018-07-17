@@ -1,13 +1,11 @@
-import 'dart:async';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:twrp_builder/fragments/completed_fragment.dart';
 import 'package:twrp_builder/fragments/contact_fragment.dart';
 import 'package:twrp_builder/fragments/contributers_fragment.dart';
 import 'package:twrp_builder/fragments/home_fragment.dart';
-import 'package:twrp_builder/fragments/rejected_fagment.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:twrp_builder/fragments/incomplete_fragment.dart';
+import 'package:twrp_builder/fragments/rejected_fagment.dart';
 import 'package:twrp_builder/fragments/team_fragment.dart';
 import 'package:twrp_builder/pages/login_page.dart';
 import 'package:twrp_builder/pages/settings_page.dart';
@@ -76,12 +74,13 @@ class HomePageState extends State<HomePage> {
     // Causes the app to rebuild with the new _selectedChoice.
     setState(() {
       _selectedChoice = choice;
-      switch(_selectedChoice.title){
-        case 'Settings' : Navigator.push(context,
-            new MaterialPageRoute(builder: (BuildContext context) {
-              return new SettingsPage();
-            }));
-        break;
+      switch (_selectedChoice.title) {
+        case 'Settings':
+          Navigator.push(context,
+              new MaterialPageRoute(builder: (BuildContext context) {
+            return new SettingsPage();
+          }));
+          break;
       }
     });
   }
@@ -91,14 +90,12 @@ class HomePageState extends State<HomePage> {
     var drawerOptions = <Widget>[];
     for (var i = 0; i < widget.drawerItems.length; i++) {
       var d = widget.drawerItems[i];
-      drawerOptions.add(
-          new ListTile(
-            leading: new Icon(d.icon),
-            title: new Text(d.title),
-            selected: i == _selectedDrawerIndex,
-            onTap: () => _onSelectItem(i),
-          )
-      );
+      drawerOptions.add(new ListTile(
+        leading: new Icon(d.icon),
+        title: new Text(d.title),
+        selected: i == _selectedDrawerIndex,
+        onTap: () => _onSelectItem(i),
+      ));
     }
 
     return new Scaffold(
@@ -107,20 +104,21 @@ class HomePageState extends State<HomePage> {
         // you can instead choose to have a static title
         title: new Text(widget.drawerItems[_selectedDrawerIndex].title),
         iconTheme: IconThemeData(color: Colors.black),
-        textTheme: TextTheme(title: TextStyle(color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
+        textTheme: TextTheme(
+            title: TextStyle(
+                color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
         centerTitle: true,
         backgroundColor: Colors.white,
         actions: <Widget>[
           PopupMenuButton<Choice>(
             onSelected: _select,
-            itemBuilder: (BuildContext context){
-              return choices.map((Choice choice){
+            itemBuilder: (BuildContext context) {
+              return choices.map((Choice choice) {
                 return PopupMenuItem<Choice>(
                   value: choice,
                   child: Text(choice.title),
                 );
-              }
-              ).toList();
+              }).toList();
             },
           ),
         ],
@@ -129,9 +127,23 @@ class HomePageState extends State<HomePage> {
         child: ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(
-              accountName: new Text(name, style: TextStyle(color: Colors.black, fontSize: 16.0, fontFamily: 'Raleway',),),
-              accountEmail: new Text(email, style: TextStyle(color: Colors.black, fontSize: 16.0, fontFamily: 'Raleway'),),
-              decoration: BoxDecoration(color: Colors.white10,),),
+              accountName: new Text(
+                name,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16.0,
+                  fontFamily: 'Raleway',
+                ),
+              ),
+              accountEmail: new Text(
+                email,
+                style: TextStyle(
+                    color: Colors.black, fontSize: 16.0, fontFamily: 'Raleway'),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white10,
+              ),
+            ),
             new Column(
               children: drawerOptions,
             )

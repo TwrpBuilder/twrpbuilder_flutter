@@ -11,13 +11,14 @@ class RejectedFragment extends StatelessWidget {
             body: TabBarView(
               children: [
                 Center(
-                  child: Text("Rejected builds will be here", textAlign: TextAlign.center,),
+                  child: Text(
+                    "Rejected builds will be here",
+                    textAlign: TextAlign.center,
+                  ),
                 )
               ],
             ),
-          )
-      ),
+          )),
     );
   }
-
 }

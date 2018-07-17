@@ -11,13 +11,14 @@ class CompletedFragment extends StatelessWidget {
             body: TabBarView(
               children: [
                 Center(
-                  child: Text("Completed builds will be here", textAlign: TextAlign.center,),
+                  child: Text(
+                    "Completed builds will be here",
+                    textAlign: TextAlign.center,
+                  ),
                 )
               ],
             ),
-          )
-      ),
+          )),
     );
   }
-
 }

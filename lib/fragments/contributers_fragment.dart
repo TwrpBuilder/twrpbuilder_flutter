@@ -11,13 +11,14 @@ class ContributeFragment extends StatelessWidget {
             body: TabBarView(
               children: [
                 Center(
-                  child: Text("Details about contributers will be here", textAlign: TextAlign.center,),
+                  child: Text(
+                    "Details about contributers will be here",
+                    textAlign: TextAlign.center,
+                  ),
                 )
               ],
             ),
-          )
-      ),
+          )),
     );
   }
-
 }

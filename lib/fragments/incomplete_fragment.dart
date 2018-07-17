@@ -18,16 +18,20 @@ class IncompleteFragment extends StatelessWidget {
             body: TabBarView(
               children: [
                 Center(
-                  child: Text("In queue builds will be here", textAlign: TextAlign.center,),
+                  child: Text(
+                    "In queue builds will be here",
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 Center(
-                  child: Text("Running builds will be here", textAlign: TextAlign.center,),
+                  child: Text(
+                    "Running builds will be here",
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ],
             ),
-          )
-      ),
+          )),
     );
   }
-
 }
