@@ -35,12 +35,12 @@ class _ContactFragmentState extends State<ContactFragment> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         new Padding(
-                          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 5.0),
+                          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 8.0),
                           child: new FlatButton.icon(
                               onPressed: () => setState(() {
                                 _launchURL("https://twrpbuilder.github.io/");
                               }),
-                              icon: Icon(Icons.public),
+                              icon: Icon(Icons.public, size: 30.0,),
                               label: Text("Official Website", style: TextStyle(color: Colors.black, fontSize: 16.0),)
                           ),
                         )
@@ -50,12 +50,12 @@ class _ContactFragmentState extends State<ContactFragment> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         new Padding(
-                          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 5.0, bottom: 5.0),
+                          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
                           child: new FlatButton.icon(
                               onPressed: () => setState(() {
                                 _launchURL("https://forum.xda-developers.com/android/apps-games/twrpbuilder-t3744253");
                               }),
-                              icon: Icon(xda),
+                              icon: Icon(xda, size: 30.0,),
                               label: Text("XDA Thread", style: TextStyle(color: Colors.black, fontSize: 16.0),)
                           ),
                         )
@@ -65,12 +65,12 @@ class _ContactFragmentState extends State<ContactFragment> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         new Padding(
-                          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 5.0, bottom: 5.0),
+                          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
                           child: new FlatButton.icon(
                               onPressed: () => setState(() {
                                 _launchURL("https://github.com/TwrpBuilder");
                               }),
-                              icon: Icon(github_circle),
+                              icon: Icon(github_circle, size: 30.0,),
                               label: Text("Source", style: TextStyle(color: Colors.black, fontSize: 16.0),)
                           ),
                         )
@@ -80,12 +80,12 @@ class _ContactFragmentState extends State<ContactFragment> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         new Padding(
-                          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 5.0, bottom: 5.0),
+                          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
                           child: new FlatButton.icon(
                               onPressed: () => setState(() {
                                 _launchURL("https://t.me/TWBuilder");
                               }),
-                              icon: Icon(telegram),
+                              icon: Icon(telegram, size: 30.0,),
                               label: Text("Telegram Support", style: TextStyle(color: Colors.black, fontSize: 16.0),)
                           ),
                         )
@@ -95,12 +95,12 @@ class _ContactFragmentState extends State<ContactFragment> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         new Padding(
-                          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 5.0, bottom: 5.0),
+                          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0, bottom: 8.0),
                           child: new FlatButton.icon(
                               onPressed: () => setState(() {
                                 _launchURL("https://github.com/TWRPBuilder/TWRPBuilder/issues");
                               }),
-                              icon: Icon(Icons.bug_report),
+                              icon: Icon(Icons.bug_report , size: 30.0,),
                               label: Text("Report a bug", style: TextStyle(color: Colors.black, fontSize: 16.0),)
                           ),
                         )

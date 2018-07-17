@@ -131,14 +131,24 @@ class HomePageState extends State<HomePage> {
                 name,
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 16.0,
+                  fontSize: 15.0,
                   fontFamily: 'Raleway',
                 ),
               ),
               accountEmail: new Text(
                 email,
                 style: TextStyle(
-                    color: Colors.black, fontSize: 16.0, fontFamily: 'Raleway'),
+                    color: Colors.black, fontSize: 14.0, fontFamily: 'Raleway'),
+              ),
+              currentAccountPicture: Container(
+                width: 96.0,
+                height: 96.0,
+                decoration: new BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(
+                            userProfile))),
               ),
               decoration: BoxDecoration(
                 color: Colors.white10,

@@ -9,6 +9,7 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
 String name = "";
 String email = "";
+String userProfile = "";
 
 class LoginPage extends StatelessWidget {
   @override
@@ -49,6 +50,7 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
       }));
       name = currentUser.displayName;
       email = currentUser.email;
+      userProfile = currentUser.photoUrl;
     }
     assert(_user.uid == currentUser.uid);
     return _user;
