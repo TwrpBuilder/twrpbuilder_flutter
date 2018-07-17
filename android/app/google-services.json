@@ -1,0 +1,137 @@
+{
+  "project_info": {
+    "project_number": "1079738297898",
+    "firebase_url": "https://twrpbuilder.firebaseio.com",
+    "project_id": "twrpbuilder",
+    "storage_bucket": "twrpbuilder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079738297898:android:5d732d52859ebc53",
+        "android_client_info": {
+          "package_name": "com.TwrpBuilder.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079738297898-v7fepplokdfbre4856rsevqcnd7t72s8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.TwrpBuilder.admin",
+            "certificate_hash": "812a40c2d807e668114479bef9b474f9fd9fb626"
+          }
+        },
+        {
+          "client_id": "1079738297898-ae96b0vqequb10vrjnigp548smkfrru1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.TwrpBuilder.admin",
+            "certificate_hash": "caa0a129f4ff2302639270b11246e0bf086fefa8"
+          }
+        },
+        {
+          "client_id": "1079738297898-bnlgbg1cbo46sdm51cmbvbm384pp7i87.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgs52qKpykOA9M6WW49btolwKtqOumhJ4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079738297898-va03bcomlh3df5l92jpmdaqvvfjh0bod.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1079738297898-kgnh4od6mdj1gnt2mqrh452u0iml2joe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ksns"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079738297898:android:eab7865fe6906d6b",
+        "android_client_info": {
+          "package_name": "com.github.TwrpBuilder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079738297898-46ks7fh3olc005mca5mkd9vhnth4m3rk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.TwrpBuilder",
+            "certificate_hash": "caa0a129f4ff2302639270b11246e0bf086fefa8"
+          }
+        },
+        {
+          "client_id": "1079738297898-net250d1pd5sv4fv6g2vh0ghiqe6m3m2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.TwrpBuilder",
+            "certificate_hash": "812a40c2d807e668114479bef9b474f9fd9fb626"
+          }
+        },
+        {
+          "client_id": "1079738297898-hmc7rnedltg0uo062pq7deb8c977o3iv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.TwrpBuilder",
+            "certificate_hash": "85e3075defe2c7d99238e46479267c838ee11bdc"
+          }
+        },
+        {
+          "client_id": "1079738297898-bnlgbg1cbo46sdm51cmbvbm384pp7i87.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgs52qKpykOA9M6WW49btolwKtqOumhJ4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079738297898-va03bcomlh3df5l92jpmdaqvvfjh0bod.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1079738297898-kgnh4od6mdj1gnt2mqrh452u0iml2joe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ksns"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
