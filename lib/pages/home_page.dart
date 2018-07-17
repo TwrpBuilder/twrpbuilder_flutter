@@ -7,16 +7,12 @@ import 'package:twrp_builder/fragments/contributers_fragment.dart';
 import 'package:twrp_builder/fragments/home_fragment.dart';
 import 'package:twrp_builder/fragments/rejected_fagment.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:twrp_builder/fragments/incomplete_fragment.dart';
 import 'package:twrp_builder/fragments/team_fragment.dart';
+import 'package:twrp_builder/pages/login_page.dart';
 import 'package:twrp_builder/pages/settings_page.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
-String name = "";
-String email = "";
-String nn;
-String ee;
 
 class DrawerItem {
   String title;
@@ -67,7 +63,7 @@ class HomePageState extends State<HomePage> {
   }
 
   //LoadUser loadUser = new LoadUser();
-  final Future<FirebaseUser> ssd = LoadUser._loadUserData();
+//  final Future<FirebaseUser> ssd = LoadUser._loadUserData();
 
   _onSelectItem(int index) {
     setState(() => _selectedDrawerIndex = index);
@@ -147,19 +143,19 @@ class HomePageState extends State<HomePage> {
   }
 }
 
-class LoadUser {
-  //LoadUser loadUser;
-//  LoadUser(){
-//    loadUser = new LoadUser();
+//class LoadUser {
+//  //LoadUser loadUser;
+////  LoadUser(){
+////    loadUser = new LoadUser();
+////  }
+//
+//  static Future<FirebaseUser> _loadUserData() async{
+//    FirebaseUser user = await _auth.currentUser();
+//    name = user.displayName;
+//    email = user.email;
+//    return user;
 //  }
-
-  static Future<FirebaseUser> _loadUserData() async{
-    FirebaseUser user = await _auth.currentUser();
-    name = user.displayName;
-    email = user.email;
-    return user;
-  }
-}
+//}
 
 class Choice {
   const Choice({this.title, this.icon});

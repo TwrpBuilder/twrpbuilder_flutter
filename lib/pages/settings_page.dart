@@ -8,10 +8,6 @@ import 'package:twrp_builder/fragments/incomplete_fragment.dart';
 import 'package:twrp_builder/pages/login_page.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
-String name = "";
-String email = "";
-String nn;
-String ee;
 
 class SettingsPage extends StatefulWidget {
 
@@ -22,8 +18,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class SettingsPageState extends State<SettingsPage> {
-  //LoadUser loadUser = new LoadUser();
-  final Future<FirebaseUser> ssd = LoadUser._loadUserData();
 
   @override
   Widget build(BuildContext context) {
@@ -39,19 +33,5 @@ class SettingsPageState extends State<SettingsPage> {
         backgroundColor: Colors.white,
       ),
     );
-  }
-}
-
-class LoadUser {
-  //LoadUser loadUser;
-//  LoadUser(){
-//    loadUser = new LoadUser();
-//  }
-
-  static Future<FirebaseUser> _loadUserData() async{
-    FirebaseUser user = await _auth.currentUser();
-    name = user.displayName;
-    email = user.email;
-    return user;
   }
 }

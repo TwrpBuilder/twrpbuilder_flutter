@@ -6,6 +6,8 @@ import 'package:twrp_builder/pages/home_page.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
+String name = "";
+String email = "";
 
 class LoginPage extends StatelessWidget {
   @override
@@ -45,6 +47,8 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
           new MaterialPageRoute(builder: (BuildContext context) {
             return new HomePage();
           }));
+      name = currentUser.displayName;
+      email = currentUser.email;
     }
     assert(_user.uid == currentUser.uid);
     return _user;
