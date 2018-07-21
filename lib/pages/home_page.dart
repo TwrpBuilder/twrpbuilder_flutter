@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:twrp_builder/fragments/completed_fragment.dart';
@@ -9,6 +11,7 @@ import 'package:twrp_builder/fragments/rejected_fagment.dart';
 import 'package:twrp_builder/fragments/team_fragment.dart';
 import 'package:twrp_builder/pages/login_page.dart';
 import 'package:twrp_builder/pages/settings_page.dart';
+import 'package:twrpbuilder_plugin/twrpbuilder_plugin.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -36,7 +39,14 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  bool _rootAccess = false;
   int _selectedDrawerIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    initRootRequest();
+  }
 
   _getDrawerItemWidget(int pos) {
     switch (pos) {
@@ -82,6 +92,14 @@ class HomePageState extends State<HomePage> {
           }));
           break;
       }
+    });
+  }
+
+  Future<void> initRootRequest() async {
+    bool rootAccess = await TwrpbuilderPlugin.rootAccess;
+
+    setState(() {
+      _rootAccess = rootAccess;
     });
   }
 
