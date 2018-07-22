@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:twrp_builder/fragments/completed_fragment.dart';
 import 'package:twrp_builder/fragments/contact_fragment.dart';
 import 'package:twrp_builder/fragments/contributers_fragment.dart';
@@ -9,11 +11,13 @@ import 'package:twrp_builder/fragments/home_fragment.dart';
 import 'package:twrp_builder/fragments/incomplete_fragment.dart';
 import 'package:twrp_builder/fragments/rejected_fagment.dart';
 import 'package:twrp_builder/fragments/team_fragment.dart';
+import 'package:twrp_builder/main.dart';
 import 'package:twrp_builder/pages/login_page.dart';
 import 'package:twrp_builder/pages/settings_page.dart';
 import 'package:twrpbuilder_plugin/twrpbuilder_plugin.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
+final GoogleSignIn _googleSignIn = new GoogleSignIn();
 
 class DrawerItem {
   String title;
@@ -70,8 +74,45 @@ class HomePageState extends State<HomePage> {
     }
   }
 
-  //LoadUser loadUser = new LoadUser();
-//  final Future<FirebaseUser> ssd = LoadUser._loadUserData();
+  //Logout user and exit the app
+  Future<void> _logOutUser() async {
+    await FirebaseAuth.instance.signOut();
+    await _googleSignIn.signOut().whenComplete(() {exit(0);});
+//    Navigator.pushReplacement(context,
+//        new MaterialPageRoute(builder: (BuildContext context) {
+//      return new MyApp();
+//    }));
+    //exit(0);
+  }
+
+  Future<void> _quit() async {
+    exit(0);
+  }
+
+  Future<Null> _showQuitDialog() async {
+    return showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Quit!"),
+            actions: <Widget>[
+              new FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Close")
+              ),
+              new FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    _quit();
+                  },
+                  child: Text("Quit")),
+            ],
+          );
+        });
+  }
 
   _onSelectItem(int index) {
     setState(() => _selectedDrawerIndex = index);
@@ -90,6 +131,12 @@ class HomePageState extends State<HomePage> {
               new MaterialPageRoute(builder: (BuildContext context) {
             return new SettingsPage();
           }));
+          break;
+        case 'Logout':
+          _logOutUser();
+          break;
+        case 'Quit':
+          _showQuitDialog();
           break;
       }
     });
@@ -164,9 +211,7 @@ class HomePageState extends State<HomePage> {
                 decoration: new BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(
-                            userProfile))),
+                        fit: BoxFit.fill, image: NetworkImage(userProfile))),
               ),
               decoration: BoxDecoration(
                 color: Colors.white10,

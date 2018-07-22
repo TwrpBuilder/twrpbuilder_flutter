@@ -12,10 +12,10 @@ This app depends upon flutter plugin [twrpbuilder_plugin](https://pub.dartlang.o
 * User profile data in Navigation header
 * Team details page
 * Contact details page
+* Logout and Quit
 
 ## TODO
 
-* Implement Logout and Quit
 * Implement Settings page
 * Implement Backup page to backup stock recovery
 * Implement Incomplete page - running and in queue
