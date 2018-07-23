@@ -11,7 +11,6 @@ import 'package:twrp_builder/fragments/home_fragment.dart';
 import 'package:twrp_builder/fragments/incomplete_fragment.dart';
 import 'package:twrp_builder/fragments/rejected_fagment.dart';
 import 'package:twrp_builder/fragments/team_fragment.dart';
-import 'package:twrp_builder/main.dart';
 import 'package:twrp_builder/pages/login_page.dart';
 import 'package:twrp_builder/pages/settings_page.dart';
 import 'package:twrpbuilder_plugin/twrpbuilder_plugin.dart';
@@ -37,9 +36,7 @@ class HomePage extends StatefulWidget {
   ];
 
   @override
-  State<StatefulWidget> createState() {
-    return new HomePageState();
-  }
+  HomePageState createState() => new HomePageState();
 }
 
 class HomePageState extends State<HomePage> {
@@ -101,7 +98,7 @@ class HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text("Close")
+                  child: Text('Close')
               ),
               new FlatButton(
                   onPressed: () {
@@ -144,9 +141,10 @@ class HomePageState extends State<HomePage> {
 
   Future<void> initRootRequest() async {
     bool rootAccess = await TwrpbuilderPlugin.rootAccess;
-
+    Locale myLocale = Localizations.localeOf(context);
     setState(() {
       _rootAccess = rootAccess;
+      print(myLocale.toString());
     });
   }
 

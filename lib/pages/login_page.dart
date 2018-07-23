@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'TWRP Builder',
+      title: 'Login',
       theme: ThemeData(fontFamily: 'Raleway'),
       home: new GoogleLoginPage(),
     );
