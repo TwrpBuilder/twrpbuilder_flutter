@@ -74,7 +74,9 @@ class HomePageState extends State<HomePage> {
   //Logout user and exit the app
   Future<void> _logOutUser() async {
     await FirebaseAuth.instance.signOut();
-    await _googleSignIn.signOut().whenComplete(() {exit(0);});
+    await _googleSignIn.signOut().whenComplete(() {
+      exit(0);
+    });
 //    Navigator.pushReplacement(context,
 //        new MaterialPageRoute(builder: (BuildContext context) {
 //      return new MyApp();
@@ -98,8 +100,7 @@ class HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('Close')
-              ),
+                  child: Text('Close')),
               new FlatButton(
                   onPressed: () {
                     Navigator.of(context).pop();
