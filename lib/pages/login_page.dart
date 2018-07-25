@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:twrp_builder/pages/home_page.dart';
+import 'package:twrp_builder/translation_strings.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
@@ -57,6 +58,13 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Translations.load(Locale('ar', ''));
+  }
+
+  @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
@@ -64,7 +72,7 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
         textTheme: TextTheme(
             title: TextStyle(
                 color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
-        title: new Text("Login"),
+        title: new Text('Login'),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),

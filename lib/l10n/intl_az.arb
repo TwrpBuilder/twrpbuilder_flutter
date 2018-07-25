@@ -1,496 +1,497 @@
 {
+  "@@locale" :   "az" ,
   "@@last_modified": "2018-07-23T01:04:56.436824",
   "appName": "Twrp Builder",
   "@appName": {
     "type": "text",
     "placeholders": {}
   },
-  "navigationDrawerOpen": "فتح درج التنقل",
+  "navigationDrawerOpen": "Gezinme çekmecesini aç",
   "@navigationDrawerOpen": {
     "type": "text",
     "placeholders": {}
   },
-  "navigationDrawerClose": "إغلاق درج التنقل",
+  "navigationDrawerClose": "Gezinme çekmecesini kapat",
   "@navigationDrawerClose": {
     "type": "text",
     "placeholders": {}
   },
-  "settings": "اﻹعدادات",
+  "settings": "Ayarlar",
   "@settings": {
     "type": "text",
     "placeholders": {}
   },
-  "titleActivityResetPassword": "إعادة تعيين كلمة السر",
+  "titleActivityResetPassword": "ParolaSıfırlamaEtkinliği",
   "@titleActivityResetPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "hintEmail": "البريد الالكتروني",
+  "hintEmail": "E-posta",
   "@hintEmail": {
     "type": "text",
     "placeholders": {}
   },
-  "forgotPasswordMsg": "نحتاج فقط إلى البريد الالكتروني الذي سجلت به، وسنقوم بإرسال تعليمات إعادة ضبط كلمة المرور.",
+  "forgotPasswordMsg": "Parola sıfırlama adımlarını size iletebilmemiz için kayıtlı e-posta adresiniz gerekmektedir.",
   "@forgotPasswordMsg": {
     "type": "text",
     "placeholders": {}
   },
-  "forgotPassword": "هل نسيت كلمة السر؟",
+  "forgotPassword": "Parolanızı mı unuttunuz?",
   "@forgotPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "resetPassword": "إعادة ضبط كلمة السر",
+  "resetPassword": "Parolayı sıfırla",
   "@resetPassword": {
     "type": "text",
     "placeholders": {}
   },
-  "btnBack": "رجوع",
+  "btnBack": "Geri",
   "@btnBack": {
     "type": "text",
     "placeholders": {}
   },
-  "backupRecovery": "عمل نسخة احتياطية من الريكفري",
+  "backupRecovery": "Kurtarma modunu yedekle",
   "@backupRecovery": {
     "type": "text",
     "placeholders": {}
   },
-  "uploadBackup": "رفع النسخة الاحتياطية",
+  "uploadBackup": "Yedeği yükle",
   "@uploadBackup": {
     "type": "text",
     "placeholders": {}
   },
-  "noNetwork": "لا توجد شبكة",
+  "noNetwork": "Bağlantı yok",
   "@noNetwork": {
     "type": "text",
     "placeholders": {}
   },
-  "home": "الرئيسية",
+  "home": "Ana sayfa",
   "@home": {
     "type": "text",
     "placeholders": {}
   },
-  "about": "حول",
+  "about": "Hakkında",
   "@about": {
     "type": "text",
     "placeholders": {}
   },
-  "logout": "تسجيل الخروج",
+  "logout": "Oturumu kapat",
   "@logout": {
     "type": "text",
     "placeholders": {}
   },
-  "refresh": "تحديث",
+  "refresh": "Yenile",
   "@refresh": {
     "type": "text",
     "placeholders": {}
   },
-  "uploading": "جاري الرفع",
+  "uploading": "Yükleniyor",
   "@uploading": {
     "type": "text",
     "placeholders": {}
   },
-  "failedToUpload": "فشل رفع الملفات",
+  "failedToUpload": "Veri yüklenirken hata oluştu",
   "@failedToUpload": {
     "type": "text",
     "placeholders": {}
   },
-  "uploadFinished": "اكتمل الرفع",
+  "uploadFinished": "Yükleme tamamlandı",
   "@uploadFinished": {
     "type": "text",
     "placeholders": {}
   },
-  "warningAboutRecoveryBackup": "إذا استغرق النسخ الإحتياطي وقتا طويلا قم بارسال ملف الريكفري عبر البريد اﻹلكتروني",
+  "warningAboutRecoveryBackup": "Eğer yedeği yükleme işlemi 1 dakikadan fazla sürerse, recovery.img dosyasını e-posta aracılığıyla bize iletin.",
   "@warningAboutRecoveryBackup": {
     "type": "text",
     "placeholders": {}
   },
-  "nothingToShow": "لا شيء لعرضه",
+  "nothingToShow": "Gösterilecek bir şey yok.",
   "@nothingToShow": {
     "type": "text",
     "placeholders": {}
   },
-  "somethingWentWrong": "حدث خطأ ما",
+  "somethingWentWrong": "Haydaa! Bir şeyler ters gitti.",
   "@somethingWentWrong": {
     "type": "text",
     "placeholders": {}
   },
-  "contributionCounterInfo": "قام ب %d مساهمة",
+  "contributionCounterInfo": "%d katılım yaptı",
   "@contributionCounterInfo": {
     "type": "text",
     "placeholders": {}
   },
-  "connectingToGithub": "جاري التحديث من Github…",
+  "connectingToGithub": "Github'a bağlanıyor…",
   "@connectingToGithub": {
     "type": "text",
     "placeholders": {}
   },
-  "enterUrlOfRecovery": "أدخل رابط الريكفري",
+  "enterUrlOfRecovery": "Kurtarma modunun adresini girin",
   "@enterUrlOfRecovery": {
     "type": "text",
     "placeholders": {}
   },
-  "submit": "تقديم",
+  "submit": "Onayla",
   "@submit": {
     "type": "text",
     "placeholders": {}
   },
-  "cancelUpload": "إلغاء الرفع",
+  "cancelUpload": "Yüklemeyi durdur",
   "@cancelUpload": {
     "type": "text",
     "placeholders": {}
   },
-  "cancelWarning": "هل أنت متأكد من اﻹلغاء؟",
+  "cancelWarning": "Durdurmak istediğinize emin misiniz?",
   "@cancelWarning": {
     "type": "text",
     "placeholders": {}
   },
-  "selectFile": "من فضلك اختر ملف",
+  "selectFile": "Lütfen bir dosya seçin",
   "@selectFile": {
     "type": "text",
     "placeholders": {}
   },
-  "enterUrl": "من فضلك ادخل رابط",
+  "enterUrl": "Lütfen bir bağlantı girin",
   "@enterUrl": {
     "type": "text",
     "placeholders": {}
   },
-  "buildStatus": "حالة البناء",
+  "buildStatus": "İnşa durumu",
   "@buildStatus": {
     "type": "text",
     "placeholders": {}
   },
-  "queue": "المنتظرة",
+  "queue": "Kuyruk",
   "@queue": {
     "type": "text",
     "placeholders": {}
   },
-  "running": "الجارية",
+  "running": "İşlemde",
   "@running": {
     "type": "text",
     "placeholders": {}
   },
-  "completed": "المنتهية",
+  "completed": "Tamamlanan",
   "@completed": {
     "type": "text",
     "placeholders": {}
   },
-  "makeRequest": "تقديم طلب",
+  "makeRequest": "İstek oluştur",
   "@makeRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "recovery": "الريكفري",
+  "recovery": "Kurtarma",
   "@recovery": {
     "type": "text",
     "placeholders": {}
   },
-  "download": "تحميل",
+  "download": "İndir",
   "@download": {
     "type": "text",
     "placeholders": {}
   },
-  "flash": "تثبيت",
+  "flash": "yaz",
   "@flash": {
     "type": "text",
     "placeholders": {}
   },
-  "rejected": "مرفوض",
+  "rejected": "Reddedilen",
   "@rejected": {
     "type": "text",
     "placeholders": {}
   },
-  "quit": "خروج",
+  "quit": "Çıkış",
   "@quit": {
     "type": "text",
     "placeholders": {}
   },
-  "selectLang": "اختر اللغة",
+  "selectLang": "Dil seçin",
   "@selectLang": {
     "type": "text",
     "placeholders": {}
   },
-  "checkingForUpdates": "التحقق من التحديثات…",
+  "checkingForUpdates": "Güncellemeler denetleniyor…",
   "@checkingForUpdates": {
     "type": "text",
     "placeholders": {}
   },
-  "restartChange": "إعادة تشغيل التطبيق لتطبيق التغييرات",
+  "restartChange": "Değişikliklerin uygulanması için uygulamayı yeniden başlatın",
   "@restartChange": {
     "type": "text",
     "placeholders": {}
   },
-  "cancel": "إلغاء",
+  "cancel": "İptal",
   "@cancel": {
     "type": "text",
     "placeholders": {}
   },
-  "language": "اللغة",
+  "language": "Dil",
   "@language": {
     "type": "text",
     "placeholders": {}
   },
-  "checkForUpdate": "تحقق من التحديثات",
+  "checkForUpdate": "Güncellemeleri denetle",
   "@checkForUpdate": {
     "type": "text",
     "placeholders": {}
   },
-  "disableNotification": "تعطيل الإشعارات",
+  "disableNotification": "Bildirimleri devre dışı bırak",
   "@disableNotification": {
     "type": "text",
     "placeholders": {}
   },
-  "officialWebsite": "الموقع الرسمي",
+  "officialWebsite": "Resmi web sayfası",
   "@officialWebsite": {
     "type": "text",
     "placeholders": {}
   },
-  "xdaThread": "الموضوع على موقع المطورين",
+  "xdaThread": "XDA Forum konusu",
   "@xdaThread": {
     "type": "text",
     "placeholders": {}
   },
-  "source": "الشفرة المصدرية",
+  "source": "Açık kaynak",
   "@source": {
     "type": "text",
     "placeholders": {}
   },
-  "telegramSupport": "الدعم على تيليجرام",
+  "telegramSupport": "Telegram Desteği",
   "@telegramSupport": {
     "type": "text",
     "placeholders": {}
   },
-  "noRunningBuilds": "لا توجد عمليات بناء حالية",
+  "noRunningBuilds": "İşlemde olan inşa yok",
   "@noRunningBuilds": {
     "type": "text",
     "placeholders": {}
   },
-  "noBuildsFound": "لم يتم العثور على عمليات بناء",
+  "noBuildsFound": "İnşa bulunamadı",
   "@noBuildsFound": {
     "type": "text",
     "placeholders": {}
   },
-  "noBuildsInQueue": "لا توجد عمليات بناء في المنتظرة",
+  "noBuildsInQueue": "Kuyrukta bekleyen inşa yok",
   "@noBuildsInQueue": {
     "type": "text",
     "placeholders": {}
   },
-  "date": "التاريخ",
+  "date": "Tarih",
   "@date": {
     "type": "text",
     "placeholders": {}
   },
-  "model": "الموديل",
+  "model": "Model",
   "@model": {
     "type": "text",
     "placeholders": {}
   },
-  "board": "اللوحة",
+  "board": "Çipset",
   "@board": {
     "type": "text",
     "placeholders": {}
   },
-  "brand": "العلامة التجارية",
+  "brand": "Marka",
   "@brand": {
     "type": "text",
     "placeholders": {}
   },
-  "developer": "المطور",
+  "developer": "Geliştirici",
   "@developer": {
     "type": "text",
     "placeholders": {}
   },
-  "rejectedBy": "مرفوض بواسطة",
+  "rejectedBy": "Reddeden: ",
   "@rejectedBy": {
     "type": "text",
     "placeholders": {}
   },
-  "note": "ملاحظة",
+  "note": "Not",
   "@note": {
     "type": "text",
     "placeholders": {}
   },
-  "oneTimeRequest": "يمكنك تقديم طلب  مرة واحدة فقط من خلال هذا الجهاز.إذا كنت تواجه مشاكل برجاء التواصل معنا عبر XDA",
+  "oneTimeRequest": "Bu cihazdan yalnızca bir kere istekte bulunabilirsiniz.Eğer herhangi bir sorun ile karşılaşıyorsanız, XDA üzerinden iletişim kurun.",
   "@oneTimeRequest": {
     "type": "text",
     "placeholders": {}
   },
-  "createFolderHint": "ادخل اسم المجلد هنا",
+  "createFolderHint": "Klasör adını girin",
   "@createFolderHint": {
     "type": "text",
     "placeholders": {}
   },
-  "worksOrNot": "من فضلك قم بتحديد إذا كان الملف يعمل أم لا؟",
+  "worksOrNot": "Lütfen çalışıp çalışmadığını belirten kutuyu işaretleyin",
   "@worksOrNot": {
     "type": "text",
     "placeholders": {}
   },
-  "tellUsMoreOptional": "أخبرنا بالمزيد (اختياري)",
+  "tellUsMoreOptional": "Daha ayrıntılı bilgi verin (isteğe bağlı)",
   "@tellUsMoreOptional": {
     "type": "text",
     "placeholders": {}
   },
-  "notWorks": "لم تعمل",
+  "notWorks": "Çalışmıyor",
   "@notWorks": {
     "type": "text",
     "placeholders": {}
   },
-  "works": "إنها تعمل!",
+  "works": "Çalışıyor",
   "@works": {
     "type": "text",
     "placeholders": {}
   },
-  "feedback": "الملاحظات",
+  "feedback": "Geribildirim",
   "@feedback": {
     "type": "text",
     "placeholders": {}
   },
-  "send": "إرسال",
+  "send": "Gönder",
   "@send": {
     "type": "text",
     "placeholders": {}
   },
-  "sending": "جارى اﻹرسال…",
+  "sending": "Gönderiliyor…",
   "@sending": {
     "type": "text",
     "placeholders": {}
   },
-  "feedbackSent": "تم اﻹرسال",
+  "feedbackSent": "Geribildirim gönderildi",
   "@feedbackSent": {
     "type": "text",
     "placeholders": {}
   },
-  "feedbackFailed": "فشل اﻹرسال",
+  "feedbackFailed": "Geribildirim gönderilemedi",
   "@feedbackFailed": {
     "type": "text",
     "placeholders": {}
   },
-  "noRejected": "لا توجد طلبات مرفوضة",
+  "noRejected": "Reddedilen inşa yok.",
   "@noRejected": {
     "type": "text",
     "placeholders": {}
   },
-  "contributors": "المساهمون",
+  "contributors": "Katkı sağlayanlar",
   "@contributors": {
     "type": "text",
     "placeholders": {}
   },
-  "ourTeam": "فريقنا",
+  "ourTeam": "Takımımız",
   "@ourTeam": {
     "type": "text",
     "placeholders": {}
   },
-  "incomplete": "غير المكتملة",
+  "incomplete": "Tamamlanmayan",
   "@incomplete": {
     "type": "text",
     "placeholders": {}
   },
-  "selectStockRecovery": "اختيار ملف الريكفري اﻷصلي",
+  "selectStockRecovery": "Stok kurtarmayı (recovery) seçin",
   "@selectStockRecovery": {
     "type": "text",
     "placeholders": {}
   },
-  "generateBackup": "إنشاء النسخة اﻹحتياطية",
+  "generateBackup": "Yedek oluştur",
   "@generateBackup": {
     "type": "text",
     "placeholders": {}
   },
-  "developedBy": "تم التطوير بواسطة",
+  "developedBy": "Geliştiren: ",
   "@developedBy": {
     "type": "text",
     "placeholders": {}
   },
-  "twrpBuilderTeam": "TWRP Builder فريق",
+  "twrpBuilderTeam": "TWRP Builder Takımı",
   "@twrpBuilderTeam": {
     "type": "text",
     "placeholders": {}
   },
-  "todo": "ما سيتم العمل عليه",
+  "todo": "Yapılacaklar",
   "@todo": {
     "type": "text",
     "placeholders": {}
   },
-  "developerProfile": "ملف المطور الشخصي",
+  "developerProfile": "Geliştirici sayfası",
   "@developerProfile": {
     "type": "text",
     "placeholders": {}
   },
-  "createNewFolder": "أنشئ مجلد جديد هنا",
+  "createNewFolder": "Burada yeni bir klasör oluştur",
   "@createNewFolder": {
     "type": "text",
     "placeholders": {}
   },
-  "runningInNotRootMode": "يجري العمل بدون صلاحيات الرووت",
+  "runningInNotRootMode": "Kök erişimsiz modda çalışıyor",
   "@runningInNotRootMode": {
     "type": "text",
     "placeholders": {}
   },
-  "failedToCreateBackup": "فشل إنشاء النسخة اﻹحتياطية",
+  "failedToCreateBackup": "Yedek oluşturulurken hata oluştu",
   "@failedToCreateBackup": {
     "type": "text",
     "placeholders": {}
   },
-  "backupRecoveryFromPath": "الريكفري المنسوخ احتياطيا",
+  "backupRecoveryFromPath": "Kurtarma (recovery) yedeği oluşturuldu",
   "@backupRecoveryFromPath": {
     "type": "text",
     "placeholders": {}
   },
-  "folder": "المجلد",
+  "folder": "Klasör",
   "@folder": {
     "type": "text",
     "placeholders": {}
   },
-  "reachUs": "تواصل معنا",
+  "reachUs": "Bize ulaşın",
   "@reachUs": {
     "type": "text",
     "placeholders": {}
   },
-  "backupSizeTooSmall": "حجم النسخة اﻹحتياطية صغير جدا. قم بمسحها ثم أعد إنشاء النسخة مرة أخري",
+  "backupSizeTooSmall": "Yedek boyutu çok küçük. Yedeği kaldırın ve yeni bir yedek oluşturun.",
   "@backupSizeTooSmall": {
     "type": "text",
     "placeholders": {}
   },
-  "failedToBackup": "فشل النسخ الاحتياطي",
+  "failedToBackup": "Yedeklenirken hata oluştu.",
   "@failedToBackup": {
     "type": "text",
     "placeholders": {}
   },
-  "backupDone": "انتهي النسخ اﻹحتياطي",
+  "backupDone": "Yedek oluşturuldu",
   "@backupDone": {
     "type": "text",
     "placeholders": {}
   },
-  "reportABug": "اﻹبلاغ عن مشكلة",
+  "reportABug": "Hata bildirin",
   "@reportABug": {
     "type": "text",
     "placeholders": {}
   },
-  "androidBelowKITKATNotSupported": "اﻷجهزة التي تعمل بأندرويد أقل من 4.4 غير مدعومة",
+  "androidBelowKITKATNotSupported": "Android 4.4 (KitKat) ile aşağısı desteklenmemektedir.",
   "@androidBelowKITKATNotSupported": {
     "type": "text",
     "placeholders": {}
   },
-  "buildIsReadyFor": "الريكفري جاهز ل %1",
+  "buildIsReadyFor": "%1 için inşa hazır",
   "@buildIsReadyFor": {
     "type": "text",
     "placeholders": {}
   },
-  "youCantExitUntilBackup": "لا يمكنك الخروج حتي انتهاء النسخ اﻹحتياطي",
+  "youCantExitUntilBackup": "Yedekleme bitene kadar çıkamazsınız",
   "@youCantExitUntilBackup": {
     "type": "text",
     "placeholders": {}
   },
-  "recoveryTooSmall": "الملف صغير جدا، قم باختيار ملف ريكفري صحيح",
+  "recoveryTooSmall": "Dosya boyutu çok küçük. Lütfen uygun bir dosya seçin.",
   "@recoveryTooSmall": {
     "type": "text",
     "placeholders": {}
   },
-  "select": "اختيار",
+  "select": "Seç",
   "@select": {
     "type": "text",
     "placeholders": {}
   },
-  "rootDir": "المجلد الافتراضي",
+  "rootDir": "Varsayılan dizin",
   "@rootDir": {
     "type": "text",
     "placeholders": {}
