@@ -4,16 +4,17 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:twrp_builder/fragments/completed_fragment.dart';
-import 'package:twrp_builder/fragments/contact_fragment.dart';
-import 'package:twrp_builder/fragments/contributers_fragment.dart';
-import 'package:twrp_builder/fragments/home_fragment.dart';
-import 'package:twrp_builder/fragments/incomplete_fragment.dart';
-import 'package:twrp_builder/fragments/rejected_fagment.dart';
-import 'package:twrp_builder/fragments/team_fragment.dart';
-import 'package:twrp_builder/pages/login_page.dart';
-import 'package:twrp_builder/pages/settings_page.dart';
+import '../fragments/completed_fragment.dart';
+import '../fragments/contact_fragment.dart';
+import '../fragments/contributers_fragment.dart';
+import '../fragments/home_fragment.dart';
+import '../fragments/incomplete_fragment.dart';
+import '../fragments/rejected_fagment.dart';
+import '../fragments/team_fragment.dart';
+import 'login_page.dart';
+import 'settings_page.dart';
 import 'package:twrpbuilder_plugin/twrpbuilder_plugin.dart';
+import '../translation_strings.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
@@ -145,7 +146,9 @@ class HomePageState extends State<HomePage> {
     Locale myLocale = Localizations.localeOf(context);
     setState(() {
       _rootAccess = rootAccess;
-      print(myLocale.toString());
+      String reach = Translations.of(context).reachUs;
+      //print(myLocale.languageCode);
+      print(reach);
     });
   }
 

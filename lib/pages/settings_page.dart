@@ -11,6 +11,24 @@ class SettingsPage extends StatefulWidget {
 }
 
 class SettingsPageState extends State<SettingsPage> {
+  List<Widget> _listItems = [
+    ListTile(
+      title: Text("Language"),
+      onTap: (){},
+    ),
+    ListTile(
+      title: Text("Check for update"),
+      onTap: () {},
+    ),
+    CheckboxListTile(
+      value: true,
+      onChanged: (bool value) {
+        print(value);
+      },
+      title: Text("Disable Notification"),
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -24,6 +42,10 @@ class SettingsPageState extends State<SettingsPage> {
                 color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
         centerTitle: true,
         backgroundColor: Colors.white,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: _listItems,
       ),
     );
   }

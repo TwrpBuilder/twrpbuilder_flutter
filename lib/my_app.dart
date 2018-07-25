@@ -4,6 +4,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'scope_model_wrapper.dart';
 import 'translations.dart';
 import 'pages/login_page.dart';
+import 'translation_strings.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
           const Locale('tr', ''), //Turkish
         ],
         debugShowCheckedModeBanner: false,
-        title: "TWRP Builder",
+        //title: Translations.of(context).appName, //causing problems
+        title: 'TWRP Builder',
         home: new LoginPage(),
       ),
     );

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:twrp_builder/l10n/messages_all.dart';
+import 'l10n/messages_all.dart';
 
 class Translations {
   static Future<Translations> load(Locale locale) {

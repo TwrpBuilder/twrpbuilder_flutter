@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:twrp_builder/pages/home_page.dart';
-import 'package:twrp_builder/translation_strings.dart';
+import 'home_page.dart';
+import '../translation_strings.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
@@ -61,7 +61,6 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Translations.load(Locale('ar', ''));
   }
 
   @override

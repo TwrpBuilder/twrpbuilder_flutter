@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:twrp_builder/translation_strings.dart';
+import 'translation_strings.dart';
 
 class TranslationsDelegate extends LocalizationsDelegate<Translations> {
   const TranslationsDelegate();
