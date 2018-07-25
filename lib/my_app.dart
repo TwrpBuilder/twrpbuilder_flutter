@@ -4,7 +4,6 @@ import 'package:scoped_model/scoped_model.dart';
 import 'scope_model_wrapper.dart';
 import 'translations.dart';
 import 'pages/login_page.dart';
-import 'translation_strings.dart';
 
 class MyApp extends StatelessWidget {
   @override

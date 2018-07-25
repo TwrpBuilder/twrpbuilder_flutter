@@ -1,8 +1,12 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:twrp_builder/scope_model_wrapper.dart';
+import '../translation_strings.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -12,7 +16,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-
   static bool defaultValue = null ?? false;
   static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   Future<bool> _notification;
@@ -22,7 +25,8 @@ class _SettingsPageState extends State<SettingsPage> {
     final bool notification = (prefs.getBool('notification') ?? false);
 
     setState(() {
-      _notification = prefs.setBool("notification", notification).then((bool success) {
+      _notification =
+          prefs.setBool("notification", notification).then((bool success) {
         return notification;
       });
     });
@@ -33,11 +37,70 @@ class _SettingsPageState extends State<SettingsPage> {
     prefs.setBool("notification", value);
   }
 
+  static Future<Null> _saveLanguagePrefs(String value) async {
+    final SharedPreferences prefs = await _prefs;
+    prefs.setString("language", value);
+  }
+
+  Future<Null> showLanguageDialog() async {
+    return showDialog<Null>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: new Text(Translations.of(context).language),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                ListTile(
+                  title: Text("Arabic"),
+                  onTap: () {
+                    setState(() {
+                      _saveLanguagePrefs('ar');
+                      Navigator.of(context).pop();
+                    });
+                  },
+                ),
+                ListTile(
+                  title: Text("Azerbaijani"),
+                  onTap: () {
+                    setState(() {
+                      _saveLanguagePrefs('az');
+                      Navigator.of(context).pop();
+                    });
+                  },
+                ),
+                ListTile(
+                  title: Text("English"),
+                  onTap: () {
+                    setState(() {
+                      _saveLanguagePrefs('en');
+                      Navigator.of(context).pop();
+                    });
+                  },
+                ),
+                ListTile(
+                  title: Text("Turkish"),
+                  onTap: () {
+                    setState(() {
+                      _saveLanguagePrefs('tr');
+                      Navigator.of(context).pop();
+                    });
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    );
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _notification = _prefs.then((SharedPreferences prefs){
+    _notification = _prefs.then((SharedPreferences prefs) {
       setState(() {
         defaultValue = prefs.getBool("notification") ?? false;
       });
@@ -49,47 +112,47 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        // here we display the title corresponding to the fragment
-        // you can instead choose to have a static title
-        title: new Text("Settings"),
-        iconTheme: IconThemeData(color: Colors.black),
-        textTheme: TextTheme(
-            title: TextStyle(
-                color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-      ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            title: Text("Language"),
-            onTap: (){},
-          ),
-          ListTile(
-            title: Text("Check for update"),
-            onTap: () {},
-          ),
-          CheckboxListTile(
-            value: defaultValue,
-            onChanged: (bool value) {
-              setState(() {
-                defaultValue = value;
-                _savePrefs(value);
+        appBar: new AppBar(
+          // here we display the title corresponding to the fragment
+          // you can instead choose to have a static title
+          title: new Text("Settings"),
+          iconTheme: IconThemeData(color: Colors.black),
+          textTheme: TextTheme(
+              title: TextStyle(
+                  color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+        ),
+        body: ListView(
+          children: <Widget>[
+            ListTile(
+              title: Text("Language"),
+              onTap: () {
+                showLanguageDialog();
+              },
+            ),
+            ListTile(
+              title: Text("Check for update"),
+              onTap: () {},
+            ),
+            CheckboxListTile(
+              value: defaultValue,
+              onChanged: (bool value) {
+                setState(() {
+                  defaultValue = value;
+                  _savePrefs(value);
 
-                if (value == true) {
-                  
-                } else {
-
-                }
-              });
-            },
-            title: Text("Disable Notification"),
-          )
-        ],
-      )
-    );
+                  if (value) {
+                    FirebaseMessaging()
+                        .unsubscribeFromTopic("pushNotifications");
+                  } else {
+                    FirebaseMessaging().subscribeToTopic("pushNotifications");
+                  }
+                });
+              },
+              title: Text("Disable Notification"),
+            )
+          ],
+        ));
   }
 }
-
-

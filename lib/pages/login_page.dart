@@ -65,7 +65,6 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new Scaffold(
       appBar: new AppBar(
         textTheme: TextTheme(
