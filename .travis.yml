@@ -27,8 +27,16 @@ before_script:
   - git clone https://github.com/flutter/flutter.git -b beta
   - ./flutter/bin/flutter doctor
 script:
-  - ./flutter/bin/flutter test
   - ./flutter/bin/flutter build apk
+  - find -type f -name "*.apk"
 cache:
   directories:
     - $HOME/.pub-cache
+#deploy:
+#  skip_cleanup: true
+#  provider: releases
+#  api_key:
+#    secure: 8e34bb4b42972600fb53c00981fe8e9af1201570
+#  file: "./TwrpBuilder-$(git describe --tags).apk"
+#  on:
+#    tags: true
