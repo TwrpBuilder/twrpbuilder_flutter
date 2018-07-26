@@ -67,6 +67,10 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
 
+  assets:
+    - locale/i18n_ar.json
+    - locale/i18n_en.json
+
   fonts:
       - family: MyFlutterApp
         fonts:

@@ -14,7 +14,8 @@ import '../fragments/team_fragment.dart';
 import 'login_page.dart';
 import 'settings_page.dart';
 import 'package:twrpbuilder_plugin/twrpbuilder_plugin.dart';
-import '../translation_strings.dart';
+//import '../translation_strings.dart';
+import '../json_translations.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
@@ -146,7 +147,7 @@ class HomePageState extends State<HomePage> {
     Locale myLocale = Localizations.localeOf(context);
     setState(() {
       _rootAccess = rootAccess;
-      String reach = Translations.of(context).reachUs;
+      String reach = Translations.of(context).text("settings");
       //print(myLocale.languageCode);
       print(reach);
     });

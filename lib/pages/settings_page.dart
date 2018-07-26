@@ -3,10 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:twrp_builder/scope_model_wrapper.dart';
-import '../translation_strings.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -48,7 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
       barrierDismissible: false,
       builder: (BuildContext context){
         return AlertDialog(
-          title: new Text(Translations.of(context).language),
+          title: new Text('Select language'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
