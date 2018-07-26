@@ -37,7 +37,7 @@ deploy:
   skip_cleanup: true
   provider: releases
   api_key:
-    secure: 8e34bb4b42972600fb53c00981fe8e9af1201570
+    secure: 1065563cf456bb454a633b2aab311a64386537bf9f1ab8ad9a0193cf4d406314
   file: ./TwrpBuilder-Flutter-$(git describe --tags).apk
   on:
     tags: true
