@@ -37,7 +37,7 @@ deploy:
   skip_cleanup: true
   provider: releases
   api_key:
-    secure: 1065563cf456bb454a633b2aab311a64386537bf9f1ab8ad9a0193cf4d406314
+    secure: "PHZ+6bOjti7AMXSYhDdDbX2nzADYvn9ejuFbgLJg3TznK+sdvKiRQdGHsTECJHfAuqEbDDaBKbGQI1JCmBN7aH/mwzdTiXI8Td4l0bxNut6aNNeY4Ag3HuGPfxXh3vFJB01kay8Y9e0yHncpC+cnx8pNcv6pc5ttj2FiIK3mo6BhBsJ3VfXf6FsTMN1ow2VyWvu1mACxNBdfSBr3LIDkKqE/uXqW2JavQSzIuaGOqGNoYK7CWj18OrftJXSGpoHCKF7Q6tNFLTgagKx1i93rBKP9tEKBOJ8xPrG8qIeWLiF7+NCVwfY3fgYchDfJtQZiG+UTZHDa4WDrSKDFjnys3dJCjIOBvpXVQBiMkp/T5eElDA1lHU6dIVhlkaNKV0XsO/skaUUDsDT+x4735/LBbTAefghAqkJy6Dj9sy6apZVMXnVElqORaWzBbrCbhSkcuIrL9ukBoXHaIsYNfaRuc3nLGpDn0bWmlcGIoZ/tDnPb8tGvQzLMh1cO4Qq7FFkEQw/tPcIYOxnUOkvAkN7gWebukPUofCtmOJvc3fjOI6KgZhlF3ADJFGNSEy71IjTeb+mCIH9atHHqqUre3clDccuY4oAebQj56+mdKKJerMlvmmeqJ0ide1VOzM46UABsyAMKiAPvdhnRaS1wUaH3zUwfdRFBT7FXi10rHRhouSM="
   file: ./TwrpBuilder-Flutter-$(git describe --tags).apk
   on:
     tags: true
