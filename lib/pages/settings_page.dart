@@ -83,7 +83,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                 ),
                 ListTile(
-                  title: Text(Translations.of(context).text('settings')),
+                  title: Text('Turkish'),
                   onTap: () {
                     setState(() {
                       _saveLanguagePrefs('tr');
@@ -120,7 +120,7 @@ class _SettingsPageState extends State<SettingsPage> {
         appBar: new AppBar(
           // here we display the title corresponding to the fragment
           // you can instead choose to have a static title
-          title: new Text(Translations.of(context).text('settings')),
+          title: new Text('Settings'),
           iconTheme: IconThemeData(color: Colors.black),
           textTheme: TextTheme(
               title: TextStyle(
