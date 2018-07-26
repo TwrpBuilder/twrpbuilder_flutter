@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../application.dart';
+import '../json_translations.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -14,6 +16,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   static bool defaultValue = null ?? false;
+  static Locale defaultLocale = null ?? Locale('en');
   static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   Future<bool> _notification;
 
@@ -45,7 +48,7 @@ class _SettingsPageState extends State<SettingsPage> {
       barrierDismissible: false,
       builder: (BuildContext context){
         return AlertDialog(
-          title: new Text('Select language'),
+          title: new Text(Translations.of(context).text('language')),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -54,6 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   onTap: () {
                     setState(() {
                       _saveLanguagePrefs('ar');
+                      applic.onLocaleChanged(new Locale('ar', ''));
                       Navigator.of(context).pop();
                     });
                   },
@@ -63,6 +67,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   onTap: () {
                     setState(() {
                       _saveLanguagePrefs('az');
+                      applic.onLocaleChanged(new Locale('ar', ''));
                       Navigator.of(context).pop();
                     });
                   },
@@ -72,15 +77,17 @@ class _SettingsPageState extends State<SettingsPage> {
                   onTap: () {
                     setState(() {
                       _saveLanguagePrefs('en');
+                      applic.onLocaleChanged(new Locale('en', ''));
                       Navigator.of(context).pop();
                     });
                   },
                 ),
                 ListTile(
-                  title: Text("Turkish"),
+                  title: Text(Translations.of(context).text('settings')),
                   onTap: () {
                     setState(() {
                       _saveLanguagePrefs('tr');
+                      applic.onLocaleChanged(new Locale('en', ''));
                       Navigator.of(context).pop();
                     });
                   },
@@ -100,6 +107,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _notification = _prefs.then((SharedPreferences prefs) {
       setState(() {
         defaultValue = prefs.getBool("notification") ?? false;
+        defaultLocale = Locale(prefs.getString('language')) ?? Locale('en');
       });
       print(defaultValue);
       return defaultValue;
@@ -112,7 +120,7 @@ class _SettingsPageState extends State<SettingsPage> {
         appBar: new AppBar(
           // here we display the title corresponding to the fragment
           // you can instead choose to have a static title
-          title: new Text("Settings"),
+          title: new Text(Translations.of(context).text('settings')),
           iconTheme: IconThemeData(color: Colors.black),
           textTheme: TextTheme(
               title: TextStyle(
@@ -123,7 +131,7 @@ class _SettingsPageState extends State<SettingsPage> {
         body: ListView(
           children: <Widget>[
             ListTile(
-              title: Text("Language"),
+              title: Text('Language'),
               onTap: () {
                 showLanguageDialog();
               },
@@ -150,6 +158,7 @@ class _SettingsPageState extends State<SettingsPage> {
               title: Text("Disable Notification"),
             )
           ],
-        ));
+        ),
+    );
   }
 }

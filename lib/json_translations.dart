@@ -17,15 +17,15 @@ class Translations {
     return Localizations.of(context, Translations);
   }
 
-  String text(String key){
-    return _localizedValues[key] ?? '** $key not found';
-  }
-
   static Future<Translations> load(Locale locale) async {
     Translations translations = new Translations(locale);
     String jsonContent = await rootBundle.loadString("locale/i18n_${locale.languageCode}.json");
     _localizedValues = json.decode(jsonContent);
     return translations;
+  }
+
+  String text(String key){
+    return _localizedValues[key] ?? '** $key not found';
   }
 
   get currentLanguage => locale.languageCode;
