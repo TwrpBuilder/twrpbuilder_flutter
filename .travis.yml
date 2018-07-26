@@ -28,15 +28,16 @@ before_script:
   - ./flutter/bin/flutter doctor
 script:
   - ./flutter/bin/flutter build apk
-  - find -type f -name "*.apk"
+#  - find -type f -name "*.apk"
+  - mv ./build/app/outputs/apk/release/app-release.apk ./TwrpBuilder-Flutter-$(git describe --tags).apk
 cache:
   directories:
     - $HOME/.pub-cache
-#deploy:
-#  skip_cleanup: true
-#  provider: releases
-#  api_key:
-#    secure: 8e34bb4b42972600fb53c00981fe8e9af1201570
-#  file: "./TwrpBuilder-$(git describe --tags).apk"
-#  on:
-#    tags: true
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: 8e34bb4b42972600fb53c00981fe8e9af1201570
+  file: ./TwrpBuilder-Flutter-$(git describe --tags).apk
+  on:
+    tags: true
