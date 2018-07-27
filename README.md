@@ -2,7 +2,7 @@
 
 A flutter version of [TWRP Builder](https://github.com/TwrpBuilder/TwrpBuilder) app.
 
-This app depends upon flutter plugin [twrpbuilder_plugin](https://pub.dartlang.org/packages/twrpbuilder_plugin)
+This app depends upon flutter plugin [twrpbuilder_plugin](https://pub.dartlang.org/packages/twrpbuilder_plugin) [![pub package](https://img.shields.io/pub/v/twrpbuilder_plugin.svg)](https://pub.dartlang.org/packages/twrpbuilder_plugin)
 
 ##### Note: This app is not for iOS, so don't try to build it for iOS devices.
 
