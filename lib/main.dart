@@ -3,42 +3,45 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'pages/login_page.dart';
-import 'json_translations.dart';
+
 import 'application.dart';
-void main() => runApp(new MyApp());
+import 'json_translations.dart';
+import 'pages/login_page.dart';
+
+Future<void> main() async {
+  SharedPreferences _prefs = await SharedPreferences.getInstance();
+  String language = _prefs.getString('language') ?? 'en';
+  return runApp(new MyApp(defaultLanguage: language));
+}
 
 class MyApp extends StatefulWidget {
+  MyApp({
+    this.defaultLanguage,
+  });
+
+  final String defaultLanguage;
+
   @override
   _MyAppState createState() => new _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  static Locale defaultLocale = null ?? Locale('en');
-  static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  Future<Locale> _language;
-  SpecificLocalizationDelegate _loaleOverrideDelegate;
+  Locale defaultLocale;
+  SpecificLocalizationDelegate _localeOverrideDelegate;
 
   @override
   void initState() {
     super.initState();
 
-    _language = _prefs.then((SharedPreferences prefs){
-      setState(() {
-        defaultLocale = Locale(prefs.getString('language')) ?? Locale('en');
-      });
-      print(defaultLocale);
-      _loaleOverrideDelegate = new SpecificLocalizationDelegate(defaultLocale);
-    });
+    defaultLocale = Locale(widget.defaultLanguage);
 
-
+    _localeOverrideDelegate = new SpecificLocalizationDelegate(defaultLocale);
     applic.onLocaleChanged = onLocaleChange;
-    applic.onLocaleChanged(defaultLocale);
   }
 
   onLocaleChange(Locale locale) {
     setState(() {
-      _loaleOverrideDelegate = new SpecificLocalizationDelegate(locale);
+      _localeOverrideDelegate = new SpecificLocalizationDelegate(locale);
     });
   }
 
@@ -46,11 +49,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'TWRP Builder',
-      theme: ThemeData(
-          fontFamily: 'Raleway'
-      ),
+      theme: ThemeData(fontFamily: 'Raleway'),
       localizationsDelegates: [
-        _loaleOverrideDelegate,
+        _localeOverrideDelegate,
         const TranslationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

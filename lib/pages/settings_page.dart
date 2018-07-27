@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../application.dart';
-import '../json_translations.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -44,60 +44,59 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Future<Null> showLanguageDialog() async {
     return showDialog<Null>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context){
-        return AlertDialog(
-          title: new Text(Translations.of(context).text('language')),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                ListTile(
-                  title: Text("Arabic"),
-                  onTap: () {
-                    setState(() {
-                      _saveLanguagePrefs('ar');
-                      applic.onLocaleChanged(new Locale('ar', ''));
-                      Navigator.of(context).pop();
-                    });
-                  },
-                ),
-                ListTile(
-                  title: Text("Azerbaijani"),
-                  onTap: () {
-                    setState(() {
-                      _saveLanguagePrefs('az');
-                      applic.onLocaleChanged(new Locale('ar', ''));
-                      Navigator.of(context).pop();
-                    });
-                  },
-                ),
-                ListTile(
-                  title: Text("English"),
-                  onTap: () {
-                    setState(() {
-                      _saveLanguagePrefs('en');
-                      applic.onLocaleChanged(new Locale('en', ''));
-                      Navigator.of(context).pop();
-                    });
-                  },
-                ),
-                ListTile(
-                  title: Text('Turkish'),
-                  onTap: () {
-                    setState(() {
-                      _saveLanguagePrefs('tr');
-                      applic.onLocaleChanged(new Locale('en', ''));
-                      Navigator.of(context).pop();
-                    });
-                  },
-                ),
-              ],
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text('Language'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  ListTile(
+                    title: Text("Arabic"),
+                    onTap: () {
+                      setState(() {
+                        _saveLanguagePrefs('ar');
+                        applic.onLocaleChanged(new Locale('ar', ''));
+                        Navigator.of(context).pop();
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text("Azerbaijani"),
+                    onTap: () {
+                      setState(() {
+                        _saveLanguagePrefs('az');
+                        applic.onLocaleChanged(new Locale('ar', ''));
+                        Navigator.of(context).pop();
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text("English"),
+                    onTap: () {
+                      setState(() {
+                        _saveLanguagePrefs('en');
+                        applic.onLocaleChanged(new Locale('en', ''));
+                        Navigator.of(context).pop();
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Turkish'),
+                    onTap: () {
+                      setState(() {
+                        _saveLanguagePrefs('tr');
+                        applic.onLocaleChanged(new Locale('en', ''));
+                        Navigator.of(context).pop();
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-        );
-      }
-    );
+          );
+        });
   }
 
   @override
@@ -109,7 +108,6 @@ class _SettingsPageState extends State<SettingsPage> {
         defaultValue = prefs.getBool("notification") ?? false;
         defaultLocale = Locale(prefs.getString('language')) ?? Locale('en');
       });
-      print(defaultValue);
       return defaultValue;
     });
   }
@@ -117,48 +115,47 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(
-          // here we display the title corresponding to the fragment
-          // you can instead choose to have a static title
-          title: new Text('Settings'),
-          iconTheme: IconThemeData(color: Colors.black),
-          textTheme: TextTheme(
-              title: TextStyle(
-                  color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-        ),
-        body: ListView(
-          children: <Widget>[
-            ListTile(
-              title: Text('Language'),
-              onTap: () {
-                showLanguageDialog();
-              },
-            ),
-            ListTile(
-              title: Text("Check for update"),
-              onTap: () {},
-            ),
-            CheckboxListTile(
-              value: defaultValue,
-              onChanged: (bool value) {
-                setState(() {
-                  defaultValue = value;
-                  _savePrefs(value);
+      appBar: new AppBar(
+        // here we display the title corresponding to the fragment
+        // you can instead choose to have a static title
+        title: new Text('Settings'),
+        iconTheme: IconThemeData(color: Colors.black),
+        textTheme: TextTheme(
+            title: TextStyle(
+                color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+      ),
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text('Language'),
+            onTap: () {
+              showLanguageDialog();
+            },
+          ),
+          ListTile(
+            title: Text("Check for update"),
+            onTap: () {},
+          ),
+          CheckboxListTile(
+            value: defaultValue,
+            onChanged: (bool value) {
+              setState(() {
+                defaultValue = value;
+                _savePrefs(value);
 
-                  if (value) {
-                    FirebaseMessaging()
-                        .unsubscribeFromTopic("pushNotifications");
-                  } else {
-                    FirebaseMessaging().subscribeToTopic("pushNotifications");
-                  }
-                });
-              },
-              title: Text("Disable Notification"),
-            )
-          ],
-        ),
+                if (value) {
+                  FirebaseMessaging().unsubscribeFromTopic("pushNotifications");
+                } else {
+                  FirebaseMessaging().subscribeToTopic("pushNotifications");
+                }
+              });
+            },
+            title: Text("Disable Notification"),
+          )
+        ],
+      ),
     );
   }
 }
