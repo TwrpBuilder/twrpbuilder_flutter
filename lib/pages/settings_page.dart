@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../application.dart';
+import '../json_translations.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -48,7 +49,7 @@ class _SettingsPageState extends State<SettingsPage> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text('Language'),
+            title: new Text(Translations.of(context).text('select_lang')),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
@@ -118,7 +119,7 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: new AppBar(
         // here we display the title corresponding to the fragment
         // you can instead choose to have a static title
-        title: new Text('Settings'),
+        title: new Text(Translations.of(context).text('settings')),
         iconTheme: IconThemeData(color: Colors.black),
         textTheme: TextTheme(
             title: TextStyle(
@@ -129,13 +130,13 @@ class _SettingsPageState extends State<SettingsPage> {
       body: ListView(
         children: <Widget>[
           ListTile(
-            title: Text('Language'),
+            title: Text(Translations.of(context).text('language')),
             onTap: () {
               showLanguageDialog();
             },
           ),
           ListTile(
-            title: Text("Check for update"),
+            title: Text(Translations.of(context).text('check_for_update')),
             onTap: () {},
           ),
           CheckboxListTile(
@@ -152,7 +153,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 }
               });
             },
-            title: Text("Disable Notification"),
+            title: Text(Translations.of(context).text('disable_notification')),
           )
         ],
       ),

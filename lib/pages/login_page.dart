@@ -5,23 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'home_page.dart';
+import '../json_translations.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
 String name = "";
 String email = "";
 String userProfile = "";
-
-class LoginPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Login',
-      theme: ThemeData(fontFamily: 'Raleway'),
-      home: new GoogleLoginPage(),
-    );
-  }
-}
 
 class GoogleLoginPage extends StatefulWidget {
   @override

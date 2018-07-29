@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: applic.supportedLocales(),
-      home: new LoginPage(),
+      home: new GoogleLoginPage(),
     );
   }
 }

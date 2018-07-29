@@ -13,6 +13,7 @@ import '../fragments/home_fragment.dart';
 import '../fragments/incomplete_fragment.dart';
 import '../fragments/rejected_fagment.dart';
 import '../fragments/team_fragment.dart';
+import '../json_translations.dart';
 import 'login_page.dart';
 import 'settings_page.dart';
 
@@ -26,15 +27,6 @@ class DrawerItem {
 }
 
 class HomePage extends StatefulWidget {
-  final drawerItems = [
-    new DrawerItem("Home", Icons.home),
-    new DrawerItem("Incomplete", Icons.sync),
-    new DrawerItem("Completed", Icons.done),
-    new DrawerItem("Rejected", Icons.block),
-    new DrawerItem("Contributers", Icons.code),
-    new DrawerItem("Our Team", Icons.group_work),
-    new DrawerItem("Reach Us", Icons.info_outline),
-  ];
 
   @override
   HomePageState createState() => new HomePageState();
@@ -95,7 +87,7 @@ class HomePageState extends State<HomePage> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Quit!"),
+            title: Text(Translations.of(context).text('quit')),
             actions: <Widget>[
               new FlatButton(
                   onPressed: () {
@@ -107,7 +99,7 @@ class HomePageState extends State<HomePage> {
                     Navigator.of(context).pop();
                     _quit();
                   },
-                  child: Text("Quit")),
+                  child: Text(Translations.of(context).text('quit'))),
             ],
           );
         });
@@ -150,9 +142,20 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    List<DrawerItem> drawerItems = [
+      new DrawerItem(Translations.of(context).text('home'), Icons.home),
+      new DrawerItem("Incomplete", Icons.sync),
+      new DrawerItem(Translations.of(context).text('completed'), Icons.done),
+      new DrawerItem(Translations.of(context).text('rejected'), Icons.block),
+      new DrawerItem("Contributers", Icons.code),
+      new DrawerItem("Our Team", Icons.group_work),
+      new DrawerItem(Translations.of(context).text('reach_us'), Icons.info_outline),
+    ];
+
     var drawerOptions = <Widget>[];
-    for (var i = 0; i < widget.drawerItems.length; i++) {
-      var d = widget.drawerItems[i];
+    for (var i = 0; i < drawerItems.length; i++) {
+      var d = drawerItems[i];
       drawerOptions.add(new ListTile(
         leading: new Icon(d.icon),
         title: new Text(d.title),
@@ -165,7 +168,7 @@ class HomePageState extends State<HomePage> {
       appBar: new AppBar(
         // here we display the title corresponding to the fragment
         // you can instead choose to have a static title
-        title: new Text(widget.drawerItems[_selectedDrawerIndex].title),
+        title: new Text(drawerItems[_selectedDrawerIndex].title),
         iconTheme: IconThemeData(color: Colors.black),
         textTheme: TextTheme(
             title: TextStyle(
