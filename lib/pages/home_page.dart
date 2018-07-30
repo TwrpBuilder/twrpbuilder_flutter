@@ -145,11 +145,11 @@ class HomePageState extends State<HomePage> {
 
     List<DrawerItem> drawerItems = [
       new DrawerItem(Translations.of(context).text('home'), Icons.home),
-      new DrawerItem("Incomplete", Icons.sync),
+      new DrawerItem(Translations.of(context).text('incomplete'), Icons.sync),
       new DrawerItem(Translations.of(context).text('completed'), Icons.done),
       new DrawerItem(Translations.of(context).text('rejected'), Icons.block),
-      new DrawerItem("Contributers", Icons.code),
-      new DrawerItem("Our Team", Icons.group_work),
+      new DrawerItem(Translations.of(context).text('contributors'), Icons.code),
+      new DrawerItem(Translations.of(context).text('ourTeam'), Icons.group_work),
       new DrawerItem(Translations.of(context).text('reach_us'), Icons.info_outline),
     ];
 

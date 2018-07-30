@@ -87,5 +87,8 @@
     "you_cant_exit_until_backup" : "You can't exit until backup is finished",
     "recovery_too_small" : "File size too small, Select a proper recovery file",
     "select" : "Select",
-    "root_dir" : "Default Dir"
+    "root_dir" : "Default Dir",
+    "contributors": "المساهمون",
+    "ourTeam": "فريقنا",
+    "incomplete": "غير المكتملة"
 } 
