@@ -58,6 +58,7 @@ class _MyAppState extends State<MyApp> {
       ],
       supportedLocales: applic.supportedLocales(),
       home: new GoogleLoginPage(),
+      locale: defaultLocale,
     );
   }
 }

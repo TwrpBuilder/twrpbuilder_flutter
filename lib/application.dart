@@ -3,7 +3,7 @@ import 'dart:ui';
 typedef void LocaleChangeCallback(Locale locale);
 
 class APPLIC {
-  final List<String> supportedLanguages = ['en', 'ar'];
+  final List<String> supportedLanguages = ['en', 'ar', 'tr'];
 
   Iterable<Locale> supportedLocales() => supportedLanguages.map<Locale>((lang) => new Locale(lang, ''));
   LocaleChangeCallback onLocaleChanged;

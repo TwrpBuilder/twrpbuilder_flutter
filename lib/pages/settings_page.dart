@@ -17,7 +17,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   static bool defaultValue = null ?? false;
-  static Locale defaultLocale = null ?? Locale('en');
+  static Locale defaultLocale = Locale('en');
   static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   Future<bool> _notification;
 
@@ -64,10 +64,10 @@ class _SettingsPageState extends State<SettingsPage> {
                     },
                   ),
                   ListTile(
-                    title: Text("Azerbaijani"),
+                    title: Text('Azerbaijani'),
                     onTap: () {
                       setState(() {
-                        _saveLanguagePrefs('az');
+                        _saveLanguagePrefs('ar');
                         applic.onLocaleChanged(new Locale('ar', ''));
                         Navigator.of(context).pop();
                       });
@@ -88,7 +88,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     onTap: () {
                       setState(() {
                         _saveLanguagePrefs('tr');
-                        applic.onLocaleChanged(new Locale('en', ''));
+                        applic.onLocaleChanged(new Locale('tr', ''));
                         Navigator.of(context).pop();
                       });
                     },
@@ -107,7 +107,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _notification = _prefs.then((SharedPreferences prefs) {
       setState(() {
         defaultValue = prefs.getBool("notification") ?? false;
-        defaultLocale = Locale(prefs.getString('language')) ?? Locale('en');
+        //defaultLocale = Locale(prefs.getString('language')) ?? Locale('en');
       });
       return defaultValue;
     });

@@ -68,6 +68,7 @@ flutter:
   assets:
     - locale/i18n_ar.json
     - locale/i18n_en.json
+    - locale/i18n_tr.json
 
   fonts:
       - family: MyFlutterApp
