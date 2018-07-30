@@ -67,8 +67,8 @@ class _SettingsPageState extends State<SettingsPage> {
                     title: Text('Azerbaijani'),
                     onTap: () {
                       setState(() {
-                        _saveLanguagePrefs('ar');
-                        applic.onLocaleChanged(new Locale('ar', ''));
+                        _saveLanguagePrefs('tr');
+                        applic.onLocaleChanged(new Locale('tr', ''));
                         Navigator.of(context).pop();
                       });
                     },
