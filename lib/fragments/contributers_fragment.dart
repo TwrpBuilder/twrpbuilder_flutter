@@ -88,38 +88,24 @@ class _ContributeFragmentPage extends State<ContributeFragment> {
         itemCount: contributorsModel.length,
         itemBuilder: (_, index) {
           return ListTile(
-            title: Padding(
-              padding: EdgeInsets.only(top: 10.0, bottom: 8.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    width: 50.0,
-                    height: 50.0,
-                    decoration: new BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(
-                                "${contributorsModel[index].avatar_url}"))),
-                  ),
-                  Padding(padding: EdgeInsets.only(left: 5.0, right: 5.0)),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(contributorsModel[index].login,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w500)),
-                      Text(
-                          'Contributions:  ${contributorsModel[index].contributions.toString()}',
-                          style: TextStyle(color: Colors.blue, fontSize: 15.0))
-                    ],
-                  )
-                ],
-              ),
+            leading: Container(
+              width: 50.0,
+              height: 50.0,
+              decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: NetworkImage(
+                          "${contributorsModel[index].avatar_url}"))),
             ),
+            title: Text(contributorsModel[index].login,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w500)),
+            subtitle: Text(
+                'Contributions:  ${contributorsModel[index].contributions.toString()}',
+                style: TextStyle(color: Colors.blue, fontSize: 15.0)),
             onTap: () {
               setState(() {
                 _launchURL(contributorsModel[index].html_url);

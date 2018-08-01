@@ -15,13 +15,13 @@ This app depends upon flutter plugin [twrpbuilder_plugin](https://pub.dartlang.o
 * Logout and Quit
 * Contributors page
 * Settings page - Check for update pending :grimacing:
+* Reject page to show rejected requests
 
 ## TODO
 
 * Implement Backup page to backup stock recovery
 * Implement Incomplete page - running and in queue
 * Implement Complete page to show completed builds
-* Implement Reject page to show rejected requests
 
 ## Let's understand Flutter
 

@@ -31,20 +31,16 @@ class _ContactFragmentState extends State<ContactFragment> {
                   child: ListBody(
                     children: <Widget>[
                       ListTile(
-                        title: Row(
-                          children: <Widget>[
-                            Icon(Icons.public),
-                            Padding(
-                                padding:
-                                    EdgeInsets.only(left: 5.0, right: 5.0)),
-                            Text(
-                                Translations
-                                    .of(context)
-                                    .text('official_website'),
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16.0))
-                          ],
+                        leading: Icon(
+                          Icons.public,
+                          color: Colors.black54,
                         ),
+                        title: Text(
+                            Translations.of(context).text('official_website'),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500)),
                         onTap: () {
                           setState(() {
                             _launchURL(OfficialWebsite);
@@ -52,17 +48,15 @@ class _ContactFragmentState extends State<ContactFragment> {
                         },
                       ),
                       ListTile(
-                        title: Row(
-                          children: <Widget>[
-                            Icon(xda),
-                            Padding(
-                                padding:
-                                    EdgeInsets.only(left: 5.0, right: 5.0)),
-                            Text(Translations.of(context).text('xda_thread'),
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16.0))
-                          ],
+                        leading: Icon(
+                          xda,
+                          color: Colors.black54,
                         ),
+                        title: Text(Translations.of(context).text('xda_thread'),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500)),
                         onTap: () {
                           setState(() {
                             _launchURL(XdaThread);
@@ -70,17 +64,15 @@ class _ContactFragmentState extends State<ContactFragment> {
                         },
                       ),
                       ListTile(
-                        title: Row(
-                          children: <Widget>[
-                            Icon(github_circle),
-                            Padding(
-                                padding:
-                                    EdgeInsets.only(left: 5.0, right: 5.0)),
-                            Text(Translations.of(context).text('source'),
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16.0))
-                          ],
+                        leading: Icon(
+                          github_circle,
+                          color: Colors.black54,
                         ),
+                        title: Text(Translations.of(context).text('source'),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500)),
                         onTap: () {
                           setState(() {
                             _launchURL(GithubSource);
@@ -88,20 +80,16 @@ class _ContactFragmentState extends State<ContactFragment> {
                         },
                       ),
                       ListTile(
-                        title: Row(
-                          children: <Widget>[
-                            Icon(telegram),
-                            Padding(
-                                padding:
-                                    EdgeInsets.only(left: 5.0, right: 5.0)),
-                            Text(
-                                Translations
-                                    .of(context)
-                                    .text('telegram_support'),
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16.0))
-                          ],
+                        leading: Icon(
+                          telegram,
+                          color: Colors.black54,
                         ),
+                        title: Text(
+                            Translations.of(context).text('telegram_support'),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500)),
                         onTap: () {
                           setState(() {
                             _launchURL(TGramSupport);
@@ -109,17 +97,16 @@ class _ContactFragmentState extends State<ContactFragment> {
                         },
                       ),
                       ListTile(
-                        title: Row(
-                          children: <Widget>[
-                            Icon(Icons.bug_report),
-                            Padding(
-                                padding:
-                                    EdgeInsets.only(left: 5.0, right: 5.0)),
-                            Text(Translations.of(context).text('report_a_bug'),
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16.0))
-                          ],
+                        leading: Icon(
+                          Icons.bug_report,
+                          color: Colors.black54,
                         ),
+                        title: Text(
+                            Translations.of(context).text('report_a_bug'),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500)),
                         onTap: () {
                           setState(() {
                             _launchURL(ReportIssue);

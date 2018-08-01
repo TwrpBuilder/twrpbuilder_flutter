@@ -5,7 +5,8 @@ typedef void LocaleChangeCallback(Locale locale);
 class APPLIC {
   final List<String> supportedLanguages = ['en', 'ar', 'tr'];
 
-  Iterable<Locale> supportedLocales() => supportedLanguages.map<Locale>((lang) => new Locale(lang, ''));
+  Iterable<Locale> supportedLocales() =>
+      supportedLanguages.map<Locale>((lang) => new Locale(lang, ''));
   LocaleChangeCallback onLocaleChanged;
 
   static final APPLIC _applic = new APPLIC._internal();

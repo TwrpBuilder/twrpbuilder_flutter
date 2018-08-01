@@ -27,7 +27,6 @@ class DrawerItem {
 }
 
 class HomePage extends StatefulWidget {
-
   @override
   HomePageState createState() => new HomePageState();
 }
@@ -70,11 +69,6 @@ class HomePageState extends State<HomePage> {
     await _googleSignIn.signOut().whenComplete(() {
       exit(0);
     });
-//    Navigator.pushReplacement(context,
-//        new MaterialPageRoute(builder: (BuildContext context) {
-//      return new MyApp();
-//    }));
-    //exit(0);
   }
 
   Future<void> _quit() async {
@@ -142,15 +136,16 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     List<DrawerItem> drawerItems = [
       new DrawerItem(Translations.of(context).text('home'), Icons.home),
       new DrawerItem(Translations.of(context).text('incomplete'), Icons.sync),
       new DrawerItem(Translations.of(context).text('completed'), Icons.done),
       new DrawerItem(Translations.of(context).text('rejected'), Icons.block),
       new DrawerItem(Translations.of(context).text('contributors'), Icons.code),
-      new DrawerItem(Translations.of(context).text('ourTeam'), Icons.group_work),
-      new DrawerItem(Translations.of(context).text('reach_us'), Icons.info_outline),
+      new DrawerItem(
+          Translations.of(context).text('ourTeam'), Icons.group_work),
+      new DrawerItem(
+          Translations.of(context).text('reach_us'), Icons.info_outline),
     ];
 
     var drawerOptions = <Widget>[];
@@ -228,20 +223,6 @@ class HomePageState extends State<HomePage> {
     );
   }
 }
-
-//class LoadUser {
-//  //LoadUser loadUser;
-////  LoadUser(){
-////    loadUser = new LoadUser();
-////  }
-//
-//  static Future<FirebaseUser> _loadUserData() async{
-//    FirebaseUser user = await _auth.currentUser();
-//    name = user.displayName;
-//    email = user.email;
-//    return user;
-//  }
-//}
 
 class Choice {
   const Choice({this.title, this.icon});

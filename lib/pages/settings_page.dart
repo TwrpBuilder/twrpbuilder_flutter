@@ -18,6 +18,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   static bool defaultValue = null ?? false;
   static Locale defaultLocale = Locale('en');
+  static String defaultLanguage = 'English';
   static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   Future<bool> _notification;
 
@@ -41,6 +42,7 @@ class _SettingsPageState extends State<SettingsPage> {
   static Future<Null> _saveLanguagePrefs(String value) async {
     final SharedPreferences prefs = await _prefs;
     prefs.setString("language", value);
+    //defaultLanguage = value;
   }
 
   Future<Null> showLanguageDialog() async {
@@ -57,6 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     title: Text("Arabic"),
                     onTap: () {
                       setState(() {
+                        defaultLanguage = 'Arabic';
                         _saveLanguagePrefs('ar');
                         applic.onLocaleChanged(new Locale('ar', ''));
                         Navigator.of(context).pop();
@@ -67,6 +70,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     title: Text('Azerbaijani'),
                     onTap: () {
                       setState(() {
+                        defaultLanguage = 'Azerbaijani';
                         _saveLanguagePrefs('tr');
                         applic.onLocaleChanged(new Locale('tr', ''));
                         Navigator.of(context).pop();
@@ -77,6 +81,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     title: Text("English"),
                     onTap: () {
                       setState(() {
+                        defaultLanguage = 'English';
                         _saveLanguagePrefs('en');
                         applic.onLocaleChanged(new Locale('en', ''));
                         Navigator.of(context).pop();
@@ -87,6 +92,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     title: Text('Turkish'),
                     onTap: () {
                       setState(() {
+                        defaultLanguage = 'Turkish';
                         _saveLanguagePrefs('tr');
                         applic.onLocaleChanged(new Locale('tr', ''));
                         Navigator.of(context).pop();
@@ -131,6 +137,7 @@ class _SettingsPageState extends State<SettingsPage> {
         children: <Widget>[
           ListTile(
             title: Text(Translations.of(context).text('language')),
+            subtitle: Text(defaultLanguage),
             onTap: () {
               showLanguageDialog();
             },

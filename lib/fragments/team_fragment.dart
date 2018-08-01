@@ -32,18 +32,6 @@ class _TeamFragmentPage extends State<TeamFragment> {
     developerDatabaseReference.onValue.listen(_onEntryAdded);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        body: new ListView.builder(
-            itemCount: devList.length,
-            itemBuilder: (context, index) {
-              return new InkWell(
-                child: new DevListItem(devList[index], snapshot),
-              );
-            }));
-  }
-
   _onEntryAdded(Event event) {
     setState(() {
       //devList.add(new DeveloperModel.fromSnapshot(event.snapshot));
@@ -57,8 +45,19 @@ class _TeamFragmentPage extends State<TeamFragment> {
       });
       //devList.add(new DeveloperModel.fromSnapshot());
       print(event.snapshot.value.toString());
-      //weightSaves.sort((we1, we2) => we1.dateTime.compareTo(we2.dateTime));
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        body: new ListView.builder(
+            itemCount: devList.length,
+            itemBuilder: (context, index) {
+              return new InkWell(
+                child: new DevListItem(devList[index], snapshot),
+              );
+            }));
   }
 
   DeveloperModel parseUser(String userId, Map<dynamic, dynamic> user) {
