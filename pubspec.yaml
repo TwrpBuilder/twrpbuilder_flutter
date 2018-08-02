@@ -1,5 +1,6 @@
 name: twrp_builder
 description: TWRP Builder app
+version: 1.1.0
 
 dependencies:
   flutter:
@@ -19,6 +20,7 @@ dependencies:
   scoped_model: "^0.2.0"
   shared_preferences: ^0.4.2
   http: ^0.11.3+16
+  flushbar: ^0.7.5
 
 dev_dependencies:
   flutter_test:

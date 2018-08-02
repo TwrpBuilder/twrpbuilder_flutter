@@ -32,13 +32,13 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  bool _rootAccess = false;
+  //bool _rootAccess = false;
   int _selectedDrawerIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    initRootRequest();
+    //initRootRequest();
   }
 
   _getDrawerItemWidget(int pos) {
@@ -127,12 +127,12 @@ class HomePageState extends State<HomePage> {
     });
   }
 
-  Future<void> initRootRequest() async {
-    bool rootAccess = await TwrpbuilderPlugin.rootAccess;
-    setState(() {
-      _rootAccess = rootAccess;
-    });
-  }
+//  Future<void> initRootRequest() async {
+//    bool rootAccess = await TwrpbuilderPlugin.rootAccess;
+//    setState(() {
+//      _rootAccess = rootAccess;
+//    });
+//  }
 
   @override
   Widget build(BuildContext context) {

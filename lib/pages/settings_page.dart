@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flushbar/flushbar.dart';
+import 'package:twrp_builder/main.dart';
 
 import '../application.dart';
 import '../json_translations.dart';
@@ -45,6 +47,15 @@ class _SettingsPageState extends State<SettingsPage> {
     //defaultLanguage = value;
   }
 
+  void showFlushBar(BuildContext context) {
+    Flushbar(
+      title: 'Restart app',
+      message: Translations.of(context).text('restart_change'),
+      backgroundGradient: LinearGradient(colors: [Colors.blueGrey, Colors.lightBlue], tileMode: TileMode.clamp),
+      flushbarPosition: FlushbarPosition.BOTTOM,
+    ).show(context);
+  }
+
   Future<Null> showLanguageDialog() async {
     return showDialog<Null>(
         context: context,
@@ -63,6 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         _saveLanguagePrefs('ar');
                         applic.onLocaleChanged(new Locale('ar', ''));
                         Navigator.of(context).pop();
+                        showFlushBar(context);
                       });
                     },
                   ),
@@ -74,6 +86,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         _saveLanguagePrefs('tr');
                         applic.onLocaleChanged(new Locale('tr', ''));
                         Navigator.of(context).pop();
+                        showFlushBar(context);
                       });
                     },
                   ),
@@ -85,6 +98,55 @@ class _SettingsPageState extends State<SettingsPage> {
                         _saveLanguagePrefs('en');
                         applic.onLocaleChanged(new Locale('en', ''));
                         Navigator.of(context).pop();
+                        showFlushBar(context);
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text('French'),
+                    onTap: () {
+                      setState(() {
+                        defaultLanguage = 'French';
+                        _saveLanguagePrefs('en');
+                        applic.onLocaleChanged(new Locale('en', '')); //for now load english
+                        Navigator.of(context).pop();
+                        showFlushBar(context);
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Italian'),
+                    onTap: () {
+                      setState(() {
+                        defaultLanguage = 'Italian';
+                        _saveLanguagePrefs('en');
+                        applic.onLocaleChanged(new Locale('en', '')); //for now load english
+                        Navigator.of(context).pop();
+                        showFlushBar(context);
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Romanian'),
+                    onTap: () {
+                      setState(() {
+                        defaultLanguage = 'Romanian';
+                        _saveLanguagePrefs('en');
+                        applic.onLocaleChanged(new Locale('en', '')); //for now load english
+                        Navigator.of(context).pop();
+                        showFlushBar(context);
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Spanish'),
+                    onTap: () {
+                      setState(() {
+                        defaultLanguage = 'Spanish';
+                        _saveLanguagePrefs('en');
+                        applic.onLocaleChanged(new Locale('en', '')); //for now load english
+                        Navigator.of(context).pop();
+                        showFlushBar(context);
                       });
                     },
                   ),
@@ -96,6 +158,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         _saveLanguagePrefs('tr');
                         applic.onLocaleChanged(new Locale('tr', ''));
                         Navigator.of(context).pop();
+                        showFlushBar(context);
                       });
                     },
                   ),

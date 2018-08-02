@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'home_page.dart';
-import '../json_translations.dart';
+import 'package:twrpbuilder_plugin/twrpbuilder_plugin.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
@@ -19,6 +19,16 @@ class GoogleLoginPage extends StatefulWidget {
 }
 
 class _GoogleLoginPageState extends State<GoogleLoginPage> {
+
+  bool _rootAccess = false;
+
+  Future<void> initRootRequest() async {
+    bool rootAccess = await TwrpbuilderPlugin.rootAccess;
+    setState(() {
+      _rootAccess = rootAccess;
+    });
+  }
+
   Future<FirebaseUser> _signInWithGoogle() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication _gSAuth = await googleUser.authentication;
@@ -51,6 +61,7 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    initRootRequest();
   }
 
   @override
