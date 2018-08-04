@@ -1,14 +1,11 @@
+import 'package:firebase_database/firebase_database.dart';
+
 class RejectedModel {
   String Brand;
   String Board;
   String Model;
-  String CodeName;
   String Email;
-  String Uid;
-  String FmcToken;
   String Date;
-  String Url;
-  String DeveloperEmail;
   String Note;
   String Rejector;
 
@@ -16,13 +13,17 @@ class RejectedModel {
       this.Brand,
       this.Board,
       this.Model,
-      this.CodeName,
       this.Email,
-      this.Uid,
-      this.FmcToken,
       this.Date,
-      this.Url,
-      this.DeveloperEmail,
       this.Note,
       this.Rejector);
+
+  RejectedModel.fromSnapshot(DataSnapshot snapshot)
+      : Brand = snapshot.value["brand"],
+        Board = snapshot.value["board"],
+        Model = snapshot.value["model"],
+        Email = snapshot.value["email"],
+        Date = snapshot.value["date"],
+        Note = snapshot.value["note"],
+        Rejector = snapshot.value["rejector"];
 }

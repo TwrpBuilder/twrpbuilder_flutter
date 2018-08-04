@@ -11,7 +11,7 @@ import '../fragments/contact_fragment.dart';
 import '../fragments/contributers_fragment.dart';
 import '../fragments/home_fragment.dart';
 import '../fragments/incomplete_fragment.dart';
-import '../fragments/rejected_fagment.dart';
+import '../fragments/rejected_fragment.dart';
 import '../fragments/team_fragment.dart';
 import '../json_translations.dart';
 import 'login_page.dart';
