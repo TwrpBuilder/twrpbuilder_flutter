@@ -66,6 +66,9 @@ class _RejectedPage extends State<RejectedFragment> {
 //                  )
         child: FirebaseAnimatedList(
             query: FirebaseDatabase.instance.reference().child('Rejected'),
+            defaultChild: Center(
+              child: CircularProgressIndicator(strokeWidth: 2.0,),
+            ),
             itemBuilder: (_, DataSnapshot snapshot,
             Animation<double> animation, int x){
 
