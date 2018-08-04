@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
+import '../json_translations.dart';
 import '../model/rejected_model.dart';
 
 class RejectedFragment extends StatefulWidget {
@@ -93,13 +94,54 @@ class _RejectedPage extends State<RejectedFragment> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Model: $model'),
-            Text('Board: $board'),
-            Text('Brand: $brand'),
-            Text('Date: $date'),
-            Text('Email: $email'),
-            Text('Rejector: $rejector'),
-            Text('Note: $note'),
+            Row(
+              children: <Widget>[
+                Text(Translations.of(context).text('model')),
+                Padding(padding: EdgeInsets.only(left: 2.0, right: 2.0)),
+                Text(': $model'),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Text(Translations.of(context).text('board')),
+                Padding(padding: EdgeInsets.only(left: 2.0, right: 2.0)),
+                Text(': $board'),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Text(Translations.of(context).text('brand')),
+                Padding(padding: EdgeInsets.only(left: 2.0, right: 2.0)),
+                Text(': $brand'),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Text(Translations.of(context).text('date')),
+                Padding(padding: EdgeInsets.only(left: 2.0, right: 2.0)),
+                Text(': $date'),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Text(Translations.of(context).text('hint_email')),
+                Padding(padding: EdgeInsets.only(left: 2.0, right: 2.0)),
+                Text(': $email'),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Text(Translations.of(context).text('rejected_by')),
+                Padding(padding: EdgeInsets.only(left: 2.0, right: 2.0)),
+                Text(': $rejector'),
+              ],
+            ),Row(
+              children: <Widget>[
+                Text(Translations.of(context).text('note')),
+                Padding(padding: EdgeInsets.only(left: 2.0, right: 2.0)),
+                Text(': $note'),
+              ],
+            ),
           ],
         ),
       ),

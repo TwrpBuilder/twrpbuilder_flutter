@@ -12,6 +12,7 @@ final GoogleSignIn _googleSignIn = new GoogleSignIn();
 String name = "";
 String email = "";
 String userProfile = "";
+bool rootStatus;
 
 class GoogleLoginPage extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
     bool rootAccess = await TwrpbuilderPlugin.rootAccess;
     setState(() {
       _rootAccess = rootAccess;
+      rootStatus = rootAccess;
     });
   }
 
