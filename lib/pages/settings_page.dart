@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flushbar/flushbar.dart';
-import 'package:twrp_builder/main.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_permissions/simple_permissions.dart';
 
 import '../application.dart';
 import '../json_translations.dart';
@@ -23,6 +25,66 @@ class _SettingsPageState extends State<SettingsPage> {
   static String defaultLanguage = 'English';
   static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   Future<bool> _notification;
+
+  Future<String> _findLocalPath() async {
+    final directory = await getExternalStorageDirectory();
+    return directory.path;
+  }
+
+  Future<Null> _checkStoragePermissions(String url) async {
+    bool storageStatus = await SimplePermissions
+        .checkPermission(Permission.WriteExternalStorage);
+    //print(storageStatus);
+    if (!storageStatus) {
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Grant permissions'),
+              content: Text(
+                  'We need storage permission to download and store the update in external storage'),
+              actions: <Widget>[
+                new FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('CLOSE',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+                new FlatButton(
+                  onPressed: () {
+                    _startDownloadTask(url);
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    'GRANT',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            );
+          });
+    } else {
+      _startDownloadTask(url);
+    }
+  }
+
+  Future<Null> _startDownloadTask(String url) async {
+    bool requestStatus = await SimplePermissions
+        .requestPermission(Permission.WriteExternalStorage);
+    if (requestStatus) {
+      String _path = await _findLocalPath();
+
+      final taskId = await FlutterDownloader.enqueue(
+          url: url, savedDir: _path, showNotification: true);
+
+      FlutterDownloader.registerCallback((id, status, progress) {
+        print(
+            'Download task ($id) is in status ($status) and process ($progress)');
+      });
+    }
+  }
 
   Future<Null> _loadPrefs() async {
     final SharedPreferences prefs = await _prefs;
@@ -51,7 +113,9 @@ class _SettingsPageState extends State<SettingsPage> {
     Flushbar(
       title: 'Restart app',
       message: Translations.of(context).text('restart_change'),
-      backgroundGradient: LinearGradient(colors: [Colors.blueGrey, Colors.lightBlue], tileMode: TileMode.clamp),
+      backgroundGradient: LinearGradient(
+          colors: [Colors.blueGrey, Colors.lightBlue],
+          tileMode: TileMode.clamp),
       flushbarPosition: FlushbarPosition.BOTTOM,
     ).show(context);
   }
@@ -108,7 +172,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       setState(() {
                         defaultLanguage = 'French';
                         _saveLanguagePrefs('en');
-                        applic.onLocaleChanged(new Locale('en', '')); //for now load english
+                        applic.onLocaleChanged(
+                            new Locale('en', '')); //for now load english
                         Navigator.of(context).pop();
                         showFlushBar(context);
                       });
@@ -120,7 +185,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       setState(() {
                         defaultLanguage = 'Italian';
                         _saveLanguagePrefs('en');
-                        applic.onLocaleChanged(new Locale('en', '')); //for now load english
+                        applic.onLocaleChanged(
+                            new Locale('en', '')); //for now load english
                         Navigator.of(context).pop();
                         showFlushBar(context);
                       });
@@ -132,7 +198,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       setState(() {
                         defaultLanguage = 'Romanian';
                         _saveLanguagePrefs('en');
-                        applic.onLocaleChanged(new Locale('en', '')); //for now load english
+                        applic.onLocaleChanged(
+                            new Locale('en', '')); //for now load english
                         Navigator.of(context).pop();
                         showFlushBar(context);
                       });
@@ -144,7 +211,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       setState(() {
                         defaultLanguage = 'Spanish';
                         _saveLanguagePrefs('en');
-                        applic.onLocaleChanged(new Locale('en', '')); //for now load english
+                        applic.onLocaleChanged(
+                            new Locale('en', '')); //for now load english
                         Navigator.of(context).pop();
                         showFlushBar(context);
                       });
@@ -189,12 +257,9 @@ class _SettingsPageState extends State<SettingsPage> {
         // here we display the title corresponding to the fragment
         // you can instead choose to have a static title
         title: new Text(Translations.of(context).text('settings')),
-        iconTheme: IconThemeData(color: Colors.black),
-        textTheme: TextTheme(
-            title: TextStyle(
-                color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
+        textTheme:
+            TextTheme(title: TextStyle(fontSize: 20.0, fontFamily: 'Raleway')),
         centerTitle: true,
-        backgroundColor: Colors.white,
       ),
       body: ListView(
         children: <Widget>[

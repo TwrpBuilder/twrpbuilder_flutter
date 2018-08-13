@@ -24,7 +24,6 @@ class _IncompletePage extends State<IncompleteFragment> {
                 Tab(text: Translations.of(context).text('queue')),
                 Tab(text: Translations.of(context).text('running')),
               ],
-              labelColor: Colors.black,
             ),
             body: TabBarView(
               children: [

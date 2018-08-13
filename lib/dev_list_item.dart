@@ -58,7 +58,6 @@ class DevListItem extends StatelessWidget {
                         child: Text(
                           '${developerModel.name}',
                           style: TextStyle(
-                            color: Colors.black,
                             fontSize: 18.0,
                             fontFamily: 'Raleway',
                           ),

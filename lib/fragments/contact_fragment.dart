@@ -33,12 +33,10 @@ class _ContactFragmentState extends State<ContactFragment> {
                       ListTile(
                         leading: Icon(
                           Icons.public,
-                          color: Colors.black54,
                         ),
                         title: Text(
                             Translations.of(context).text('official_website'),
                             style: TextStyle(
-                                color: Colors.black,
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500)),
                         onTap: () {
@@ -50,11 +48,9 @@ class _ContactFragmentState extends State<ContactFragment> {
                       ListTile(
                         leading: Icon(
                           xda,
-                          color: Colors.black54,
                         ),
                         title: Text(Translations.of(context).text('xda_thread'),
                             style: TextStyle(
-                                color: Colors.black,
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500)),
                         onTap: () {
@@ -66,11 +62,9 @@ class _ContactFragmentState extends State<ContactFragment> {
                       ListTile(
                         leading: Icon(
                           github_circle,
-                          color: Colors.black54,
                         ),
                         title: Text(Translations.of(context).text('source'),
                             style: TextStyle(
-                                color: Colors.black,
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500)),
                         onTap: () {
@@ -82,12 +76,10 @@ class _ContactFragmentState extends State<ContactFragment> {
                       ListTile(
                         leading: Icon(
                           telegram,
-                          color: Colors.black54,
                         ),
                         title: Text(
                             Translations.of(context).text('telegram_support'),
                             style: TextStyle(
-                                color: Colors.black,
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500)),
                         onTap: () {
@@ -99,12 +91,10 @@ class _ContactFragmentState extends State<ContactFragment> {
                       ListTile(
                         leading: Icon(
                           Icons.bug_report,
-                          color: Colors.black54,
                         ),
                         title: Text(
                             Translations.of(context).text('report_a_bug'),
                             style: TextStyle(
-                                color: Colors.black,
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500)),
                         onTap: () {

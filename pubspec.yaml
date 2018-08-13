@@ -21,7 +21,9 @@ dependencies:
   shared_preferences: ^0.4.2
   http: ^0.11.3+16
   flushbar: ^0.7.5
-  path_provider: ^0.2.2
+  path_provider: ^0.4.1
+  flutter_downloader: ^0.1.0
+  simple_permissions: ^0.1.6
 
 dev_dependencies:
   flutter_test:

@@ -71,11 +71,9 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
     return new Scaffold(
       appBar: new AppBar(
         textTheme: TextTheme(
-            title: TextStyle(
-                color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
+            title: TextStyle(fontSize: 20.0, fontFamily: 'Raleway')),
         title: new Text('Login'),
         centerTitle: true,
-        backgroundColor: Colors.white,
       ),
       body: Center(
           child: new FlatButton.icon(

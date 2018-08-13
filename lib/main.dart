@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'TWRP Builder',
-      theme: ThemeData(fontFamily: 'Raleway'),
+      theme: ThemeData(fontFamily: 'Raleway', brightness: Brightness.dark),
       localizationsDelegates: [
         _localeOverrideDelegate,
         const TranslationsDelegate(),

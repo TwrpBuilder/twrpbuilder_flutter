@@ -164,12 +164,10 @@ class HomePageState extends State<HomePage> {
         // here we display the title corresponding to the fragment
         // you can instead choose to have a static title
         title: new Text(drawerItems[_selectedDrawerIndex].title),
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Colors.white),
         textTheme: TextTheme(
-            title: TextStyle(
-                color: Colors.black, fontSize: 20.0, fontFamily: 'Raleway')),
+            title: TextStyle(fontSize: 20.0, fontFamily: 'Raleway')),
         centerTitle: true,
-        backgroundColor: Colors.white,
         actions: <Widget>[
           PopupMenuButton<Choice>(
             onSelected: _select,
@@ -191,15 +189,13 @@ class HomePageState extends State<HomePage> {
               accountName: new Text(
                 name,
                 style: TextStyle(
-                  color: Colors.black,
                   fontSize: 15.0,
                   fontFamily: 'Raleway',
                 ),
               ),
               accountEmail: new Text(
                 email,
-                style: TextStyle(
-                    color: Colors.black, fontSize: 14.0, fontFamily: 'Raleway'),
+                style: TextStyle(fontSize: 14.0, fontFamily: 'Raleway'),
               ),
               currentAccountPicture: Container(
                 width: 96.0,
@@ -208,9 +204,6 @@ class HomePageState extends State<HomePage> {
                     shape: BoxShape.circle,
                     image: DecorationImage(
                         fit: BoxFit.fill, image: NetworkImage(userProfile))),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white10,
               ),
             ),
             new Column(
@@ -246,7 +239,6 @@ class ChoiceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextStyle textStyle = Theme.of(context).textTheme.display1;
     return Card(
-      color: Colors.white,
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

@@ -100,7 +100,6 @@ class _ContributeFragmentPage extends State<ContributeFragment> {
             ),
             title: Text(contributorsModel[index].login,
                 style: TextStyle(
-                    color: Colors.black,
                     fontSize: 18.0,
                     fontWeight: FontWeight.w500)),
             subtitle: Text(

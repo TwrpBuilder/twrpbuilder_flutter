@@ -88,7 +88,7 @@ class _RejectedPage extends State<RejectedFragment> {
     return Card(
       elevation: 3.0,
       shape: BeveledRectangleBorder(),
-      margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0, bottom: 5.0),
+      margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 5.0, bottom: 5.0),
       child: Container(
         padding: EdgeInsets.all(16.0),
         child: Column(

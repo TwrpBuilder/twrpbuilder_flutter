@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:flutter/material.dart';
 import 'package:twrp_builder/model/developer_model.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../model/completed_model.dart';
-import '../json_translations.dart';
-import '../pages/login_page.dart';
+
 import '../icons/icon_data.dart';
+import '../json_translations.dart';
+import '../model/completed_model.dart';
 
 class CompletedFragment extends StatefulWidget {
   @override
@@ -58,7 +58,7 @@ class _CompletedPage extends State<CompletedFragment> {
     return Card(
       elevation: 3.0,
       shape: BeveledRectangleBorder(),
-      margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 2.0, bottom: 2.0),
+      margin: EdgeInsets.only(left: 8.0, right: 8.0, top: 5.0, bottom: 2.0),
       child: Container(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -104,8 +104,8 @@ class _CompletedPage extends State<CompletedFragment> {
               child: OutlineButton(
                   onPressed: () {
                     //_launchURL(url);
-                    loadDeveloperProfile(developer);
-                    showBottomSheet(brand, model, board);
+                    _loadDeveloperProfile(developer);
+                    _showBottomSheet(brand, model, board, url);
                   },
                   child: Text(Translations.of(context).text('recovery'))),
             ),
@@ -115,7 +115,7 @@ class _CompletedPage extends State<CompletedFragment> {
     );
   }
 
-  showBottomSheet(String brand, String model, String board) {
+  _showBottomSheet(String brand, String model, String board, String url) {
     showModalBottomSheet<void>(
         context: context,
         builder: (BuildContext context) {
@@ -126,30 +126,57 @@ class _CompletedPage extends State<CompletedFragment> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Padding(padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0, bottom: 10.0)),
-                    Text(Translations.of(context).text('model'), style: TextStyle(color: Colors.lightBlue),),
+                    Padding(
+                        padding: EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 10.0, bottom: 10.0)),
+                    Text(
+                      Translations.of(context).text('model'),
+                      style: TextStyle(color: Colors.lightBlue),
+                    ),
                     Padding(padding: EdgeInsets.only(left: 2.0, right: 2.0)),
-                    Text(': $model', style: TextStyle(color: Colors.teal),),
+                    Text(
+                      ': $model',
+                      style: TextStyle(color: Colors.teal),
+                    ),
                   ],
                 ),
                 Row(
                   children: <Widget>[
-                    Padding(padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0, bottom: 10.0)),
-                    Text(Translations.of(context).text('board'), style: TextStyle(color: Colors.lightBlue),),
+                    Padding(
+                        padding: EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 10.0, bottom: 10.0)),
+                    Text(
+                      Translations.of(context).text('board'),
+                      style: TextStyle(color: Colors.lightBlue),
+                    ),
                     Padding(padding: EdgeInsets.only(left: 2.0, right: 2.0)),
-                    Text(': $board', style: TextStyle(color: Colors.teal),),
+                    Text(
+                      ': $board',
+                      style: TextStyle(color: Colors.teal),
+                    ),
                   ],
                 ),
                 Row(
                   children: <Widget>[
-                    Padding(padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0, bottom: 10.0)),
-                    Text(Translations.of(context).text('brand'), style: TextStyle(color: Colors.lightBlue),),
+                    Padding(
+                        padding: EdgeInsets.only(
+                            left: 10.0, right: 10.0, top: 10.0, bottom: 10.0)),
+                    Text(
+                      Translations.of(context).text('brand'),
+                      style: TextStyle(color: Colors.lightBlue),
+                    ),
                     Padding(padding: EdgeInsets.only(left: 2.0, right: 2.0)),
-                    Text(': $brand', style: TextStyle(color: Colors.teal),),
+                    Text(
+                      ': $brand',
+                      style: TextStyle(color: Colors.teal),
+                    ),
                   ],
                 ),
                 Padding(padding: EdgeInsets.only(top: 8.0, bottom: 8.0)),
-                Text('Developer Profile', style: TextStyle(fontSize: 18.0, color: Colors.blue),),
+                Text(
+                  'Developer Profile',
+                  style: TextStyle(fontSize: 18.0, color: Colors.blue),
+                ),
                 Padding(padding: EdgeInsets.only(top: 4.0, bottom: 4.0)),
                 ListTile(
                   leading: Container(
@@ -169,25 +196,33 @@ class _CompletedPage extends State<CompletedFragment> {
                   children: <Widget>[
                     Padding(padding: EdgeInsets.only(left: 8.0, right: 8.0)),
                     IconButton(
-                        icon: Icon(Icons.mail, size: 30.0, color: Colors.blueGrey,),
-                        onPressed: () =>
-                            _launchURL("mailto:$devEmail")
-                    ),
+                        icon: Icon(
+                          Icons.mail,
+                          size: 30.0,
+                        ),
+                        onPressed: () => _launchURL("mailto:$devEmail")),
                     IconButton(
-                        icon: Icon(github_circle, size: 30.0, color: Colors.blueGrey,),
-                        onPressed: () => _launchURL(
-                            "https://$devGitId")
-                    ),
+                        icon: Icon(
+                          github_circle,
+                          size: 30.0,
+                        ),
+                        onPressed: () => _launchURL("https://$devGitId")),
                     IconButton(
-                        icon: Icon(xda, size: 30.0, color: Colors.blueGrey,),
-                        onPressed: () => _launchURL(
-                            "$devXdaUrl")
-                    )
+                        icon: Icon(
+                          xda,
+                          size: 30.0,
+                        ),
+                        onPressed: () => _launchURL("$devXdaUrl"))
                   ],
                 ),
                 Center(
-                  child: OutlineButton(onPressed: (){}, child: Text('Download'),),
-
+                  child: OutlineButton(
+                    onPressed: () {
+                      //checkStoragePermissions(url);
+                      _launchURL(url);
+                    },
+                    child: Text('Download'),
+                  ),
                 ),
                 Padding(padding: EdgeInsets.only(top: 8.0, bottom: 8.0)),
               ],
@@ -196,7 +231,7 @@ class _CompletedPage extends State<CompletedFragment> {
         });
   }
 
-  loadDeveloperProfile(String email) {
+  Future<Null> _loadDeveloperProfile(String email) async{
     FirebaseDatabase.instance
         .reference()
         .child('Developers')
@@ -221,6 +256,17 @@ class _CompletedPage extends State<CompletedFragment> {
         devPhotoUrl = developerModel.photoUrl;
         devDonationUrl = developerModel.donationUrl;
         devDescription = developerModel.description;
+        if(developerModel != null){
+          setState(() {
+            devName = developerModel.name;
+            devEmail = developerModel.email;
+            devGitId = developerModel.gitId;
+            devXdaUrl = developerModel.xdaUrl;
+            devPhotoUrl = developerModel.photoUrl;
+            devDonationUrl = developerModel.donationUrl;
+            devDescription = developerModel.description;
+          });
+        }
       });
     });
   }
