@@ -16,7 +16,7 @@ dependencies:
   firebase_database: ^1.0.2
   firebase_messaging: ^1.0.4
   url_launcher: ^3.0.3
-  twrpbuilder_plugin: ^0.0.2
+  twrpbuilder_plugin: ^1.0.0
   scoped_model: "^0.2.0"
   shared_preferences: ^0.4.2
   http: ^0.11.3+16
@@ -24,6 +24,11 @@ dependencies:
   path_provider: ^0.4.1
   flutter_downloader: ^0.1.0
   simple_permissions: ^0.1.6
+  flutter_launcher_icons: "^0.5.2"
+
+flutter_icons:
+    android: true
+    image_path: "assets/ic_launcher.png"
 
 dev_dependencies:
   flutter_test:

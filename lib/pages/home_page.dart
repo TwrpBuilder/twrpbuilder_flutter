@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:twrpbuilder_plugin/twrpbuilder_plugin.dart';
 
 import '../fragments/completed_fragment.dart';
 import '../fragments/contact_fragment.dart';
@@ -99,6 +98,35 @@ class HomePageState extends State<HomePage> {
         });
   }
 
+  Future<Null> _showAboutDialog() async {
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AboutDialog(
+            applicationName: 'Twrp Builder',
+            applicationVersion: '1.2',
+            applicationLegalese: 'MIT License',
+            children: <Widget>[
+              Padding(padding: EdgeInsets.all(24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text('Based on', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600, fontSize: 14.0),),
+                    Padding(padding: EdgeInsets.only(top: 5.0)),
+                    Text('Flutter'),
+                    Padding(padding: EdgeInsets.only(top: 8.0)),
+                    Text('Developed by', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600, fontSize: 14.0),),
+                    Padding(padding: EdgeInsets.only(top: 5.0)),
+                    Text('TWRP Builder Team')
+                  ],
+                ),
+              )
+            ],
+          );
+        });
+  }
+
   _onSelectItem(int index) {
     setState(() => _selectedDrawerIndex = index);
     Navigator.of(context).pop(); // close the drawer
@@ -122,6 +150,9 @@ class HomePageState extends State<HomePage> {
           break;
         case 'Quit':
           _showQuitDialog();
+          break;
+        case 'About':
+          _showAboutDialog();
           break;
       }
     });
@@ -165,8 +196,8 @@ class HomePageState extends State<HomePage> {
         // you can instead choose to have a static title
         title: new Text(drawerItems[_selectedDrawerIndex].title),
         iconTheme: IconThemeData(color: Colors.white),
-        textTheme: TextTheme(
-            title: TextStyle(fontSize: 20.0, fontFamily: 'Raleway')),
+        textTheme:
+            TextTheme(title: TextStyle(fontSize: 20.0, fontFamily: 'Raleway')),
         centerTitle: true,
         actions: <Widget>[
           PopupMenuButton<Choice>(
@@ -228,6 +259,7 @@ const List<Choice> choices = const <Choice>[
   const Choice(title: 'Settings', icon: Icons.settings),
   const Choice(title: 'Logout', icon: Icons.exit_to_app),
   const Choice(title: 'Quit', icon: Icons.exit_to_app),
+  const Choice(title: 'About', icon: Icons.info)
 ];
 
 class ChoiceCard extends StatelessWidget {
