@@ -9,6 +9,7 @@ import 'json_translations.dart';
 import 'pages/login_page.dart';
 
 Future<void> main() async {
+  MaterialPageRoute.debugEnableFadingRoutes = true; ///Deprecated code - will be removed once Flutter devs fix the issue
   SharedPreferences _prefs = await SharedPreferences.getInstance();
   String language = _prefs.getString('language') ?? 'en';
   String theme = _prefs.getString('theme') ?? 'dark';
