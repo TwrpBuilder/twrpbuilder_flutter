@@ -16,13 +16,13 @@ class CompletedFragment extends StatefulWidget {
 }
 
 class _CompletedPage extends State<CompletedFragment> {
-  String devEmail;
-  String devName;
-  String devPhotoUrl;
-  String devXdaUrl;
-  String devGitId;
-  String devDonationUrl;
-  String devDescription;
+  String devEmail = "";
+  String devName = "";
+  String devPhotoUrl = "";
+  String devXdaUrl = "";
+  String devGitId = "";
+  String devDonationUrl = "";
+  String devDescription = "";
 
   Future<Null> _launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -104,8 +104,8 @@ class _CompletedPage extends State<CompletedFragment> {
               child: OutlineButton(
                   onPressed: () {
                     //_launchURL(url);
-                    _loadDeveloperProfile(developer);
-                    _showBottomSheet(brand, model, board, url);
+                    _loadDeveloperProfile(developer, brand, model, board, url);
+                    //_showBottomSheet(brand, model, board, url);
                   },
                   child: Text(Translations.of(context).text('recovery'))),
             ),
@@ -231,7 +231,7 @@ class _CompletedPage extends State<CompletedFragment> {
         });
   }
 
-  Future<Null> _loadDeveloperProfile(String email) async {
+  Future<Null> _loadDeveloperProfile(String email, brand, model, board, url) async {
     FirebaseDatabase.instance
         .reference()
         .child('Developers')
@@ -243,20 +243,27 @@ class _CompletedPage extends State<CompletedFragment> {
         .orderByChild('email')
         .equalTo(email);
     query.keepSynced(true);
-    query.once().then((DataSnapshot snapshot) {
-      devName = snapshot.value.toString();
+    await query.once().then((DataSnapshot snapshot) {
+      String snapshotValue = snapshot.value.toString();
+      print(snapshotValue);
 
-      Map<String, dynamic> devMap = snapshot.value.cast<String, dynamic>();
-      devMap.forEach((string, dynamic) {
-        DeveloperModel developerModel = parseUser(string, dynamic);
-        devName = developerModel.name;
-        devEmail = developerModel.email;
-        devGitId = developerModel.gitId;
-        devXdaUrl = developerModel.xdaUrl;
-        devPhotoUrl = developerModel.photoUrl;
-        devDonationUrl = developerModel.donationUrl;
-        devDescription = developerModel.description;
-        if (developerModel != null) {
+      if(snapshotValue == 'null'){
+        print(snapshotValue);
+        setState(() {
+          devName = "Null";
+          devEmail = email;
+          devGitId = 'github.com';
+          devXdaUrl = "https://www.xda-developers.com/";
+          devPhotoUrl = '';
+          devDonationUrl = '';
+          devDescription = 'Null';
+          _showBottomSheet(brand, model, board, url);
+        });
+      }
+      else {
+        Map<String, dynamic> devMap = snapshot.value.cast<String, dynamic>();
+        devMap.forEach((string, dynamic) {
+          DeveloperModel developerModel = parseUser(string, dynamic);
           setState(() {
             devName = developerModel.name;
             devEmail = developerModel.email;
@@ -265,9 +272,10 @@ class _CompletedPage extends State<CompletedFragment> {
             devPhotoUrl = developerModel.photoUrl;
             devDonationUrl = developerModel.donationUrl;
             devDescription = developerModel.description;
+            _showBottomSheet(brand, model, board, url);
           });
-        }
-      });
+        });
+      }
     });
   }
 
