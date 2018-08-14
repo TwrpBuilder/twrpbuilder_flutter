@@ -108,15 +108,28 @@ class HomePageState extends State<HomePage> {
             applicationVersion: '1.2',
             applicationLegalese: 'MIT License',
             children: <Widget>[
-              Padding(padding: EdgeInsets.all(24.0),
+              Padding(
+                padding: EdgeInsets.all(24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Based on', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600, fontSize: 14.0),),
+                    Text(
+                      'Based on',
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.0),
+                    ),
                     Padding(padding: EdgeInsets.only(top: 5.0)),
                     Text('Flutter'),
                     Padding(padding: EdgeInsets.only(top: 8.0)),
-                    Text('Developed by', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600, fontSize: 14.0),),
+                    Text(
+                      'Developed by',
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.0),
+                    ),
                     Padding(padding: EdgeInsets.only(top: 5.0)),
                     Text('TWRP Builder Team')
                   ],

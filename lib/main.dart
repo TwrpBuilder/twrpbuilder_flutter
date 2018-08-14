@@ -11,15 +11,28 @@ import 'pages/login_page.dart';
 Future<void> main() async {
   SharedPreferences _prefs = await SharedPreferences.getInstance();
   String language = _prefs.getString('language') ?? 'en';
-  return runApp(new MyApp(defaultLanguage: language));
+  String theme = _prefs.getString('theme') ?? 'dark';
+  Brightness brightness;
+  if (theme == 'light') {
+    brightness = Brightness.light;
+  } else {
+    brightness = Brightness.dark;
+  }
+
+  return runApp(new MyApp(
+    defaultLanguage: language,
+    defaultTheme: brightness,
+  ));
 }
 
 class MyApp extends StatefulWidget {
   MyApp({
     this.defaultLanguage,
+    this.defaultTheme,
   });
 
   final String defaultLanguage;
+  final Brightness defaultTheme;
 
   @override
   _MyAppState createState() => new _MyAppState();
@@ -27,6 +40,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale defaultLocale;
+  Brightness defaultBrightness;
   SpecificLocalizationDelegate _localeOverrideDelegate;
 
   @override
@@ -34,6 +48,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     defaultLocale = Locale(widget.defaultLanguage);
+    defaultBrightness = widget.defaultTheme;
 
     _localeOverrideDelegate = new SpecificLocalizationDelegate(defaultLocale);
     applic.onLocaleChanged = onLocaleChange;
@@ -49,7 +64,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'TWRP Builder',
-      theme: ThemeData(fontFamily: 'Raleway', brightness: Brightness.dark),
+      theme: ThemeData(fontFamily: 'Raleway', brightness: defaultBrightness),
       localizationsDelegates: [
         _localeOverrideDelegate,
         const TranslationsDelegate(),

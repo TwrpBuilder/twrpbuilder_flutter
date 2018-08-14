@@ -3,10 +3,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
+
 import '../app_constants.dart';
 import '../model/contributors_model.dart';
-import '../json_translations.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ContributeFragment extends StatefulWidget {
   @override
@@ -99,9 +99,7 @@ class _ContributeFragmentPage extends State<ContributeFragment> {
                           "${contributorsModel[index].avatar_url}"))),
             ),
             title: Text(contributorsModel[index].login,
-                style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w500)),
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
             subtitle: Text(
                 'Contributions:  ${contributorsModel[index].contributions.toString()}',
                 style: TextStyle(color: Colors.blue, fontSize: 15.0)),

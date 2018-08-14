@@ -17,13 +17,15 @@ class _IncompletePage extends State<IncompleteFragment> {
     // TODO: implement build
     return new Scaffold(
       body: DefaultTabController(
-          length: 3,
+          length: 2,
           child: Scaffold(
             appBar: new TabBar(
               tabs: [
-                Tab(text: Translations.of(context).text('queue')),
-                Tab(text: Translations.of(context).text('running')),
+                Tab(text: Translations.of(context).text('queue'),),
+                Tab(text: Translations.of(context).text('running'),),
               ],
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelColor: Colors.blue,
             ),
             body: TabBarView(
               children: [

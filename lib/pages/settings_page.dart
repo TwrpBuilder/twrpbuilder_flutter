@@ -103,13 +103,18 @@ class _SettingsPageState extends State<SettingsPage> {
     prefs.setBool("notification", value);
   }
 
+  static Future<Null> _saveThemePrefs(String value) async {
+    final SharedPreferences prefs = await _prefs;
+    prefs.setString("theme", value);
+  }
+
   static Future<Null> _saveLanguagePrefs(String value) async {
     final SharedPreferences prefs = await _prefs;
     prefs.setString("language", value);
     //defaultLanguage = value;
   }
 
-  void showFlushBar(BuildContext context) {
+  void _showFlushBar(BuildContext context) {
     Flushbar(
       title: 'Restart app',
       message: Translations.of(context).text('restart_change'),
@@ -120,7 +125,7 @@ class _SettingsPageState extends State<SettingsPage> {
     ).show(context);
   }
 
-  Future<Null> showLanguageDialog() async {
+  Future<Null> _showLanguageDialog() async {
     return showDialog<Null>(
         context: context,
         barrierDismissible: false,
@@ -138,7 +143,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         _saveLanguagePrefs('ar');
                         applic.onLocaleChanged(new Locale('ar', ''));
                         Navigator.of(context).pop();
-                        showFlushBar(context);
+                        _showFlushBar(context);
                       });
                     },
                   ),
@@ -150,7 +155,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         _saveLanguagePrefs('tr');
                         applic.onLocaleChanged(new Locale('tr', ''));
                         Navigator.of(context).pop();
-                        showFlushBar(context);
+                        _showFlushBar(context);
                       });
                     },
                   ),
@@ -162,7 +167,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         _saveLanguagePrefs('en');
                         applic.onLocaleChanged(new Locale('en', ''));
                         Navigator.of(context).pop();
-                        showFlushBar(context);
+                        _showFlushBar(context);
                       });
                     },
                   ),
@@ -175,7 +180,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         applic.onLocaleChanged(
                             new Locale('en', '')); //for now load english
                         Navigator.of(context).pop();
-                        showFlushBar(context);
+                        _showFlushBar(context);
                       });
                     },
                   ),
@@ -188,7 +193,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         applic.onLocaleChanged(
                             new Locale('en', '')); //for now load english
                         Navigator.of(context).pop();
-                        showFlushBar(context);
+                        _showFlushBar(context);
                       });
                     },
                   ),
@@ -201,7 +206,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         applic.onLocaleChanged(
                             new Locale('en', '')); //for now load english
                         Navigator.of(context).pop();
-                        showFlushBar(context);
+                        _showFlushBar(context);
                       });
                     },
                   ),
@@ -214,7 +219,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         applic.onLocaleChanged(
                             new Locale('en', '')); //for now load english
                         Navigator.of(context).pop();
-                        showFlushBar(context);
+                        _showFlushBar(context);
                       });
                     },
                   ),
@@ -226,7 +231,42 @@ class _SettingsPageState extends State<SettingsPage> {
                         _saveLanguagePrefs('tr');
                         applic.onLocaleChanged(new Locale('tr', ''));
                         Navigator.of(context).pop();
-                        showFlushBar(context);
+                        _showFlushBar(context);
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  Future<Null> _showThemeDialog() async {
+    return showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text('Select theme'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  ListTile(
+                    title: Text('Dark'),
+                    onTap: () {
+                      setState(() {
+                        _saveThemePrefs('dark');
+                        Navigator.of(context).pop();
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Light'),
+                    onTap: () {
+                      setState(() {
+                        _saveThemePrefs('light');
+                        Navigator.of(context).pop();
                       });
                     },
                   ),
@@ -267,7 +307,13 @@ class _SettingsPageState extends State<SettingsPage> {
             title: Text(Translations.of(context).text('language')),
             subtitle: Text(defaultLanguage),
             onTap: () {
-              showLanguageDialog();
+              _showLanguageDialog();
+            },
+          ),
+          ListTile(
+            title: Text('Theme'),
+            onTap: () {
+              _showThemeDialog();
             },
           ),
           ListTile(

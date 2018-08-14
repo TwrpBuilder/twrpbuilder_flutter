@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:twrpbuilder_plugin/twrpbuilder_plugin.dart';
 
 import 'home_page.dart';
-import 'package:twrpbuilder_plugin/twrpbuilder_plugin.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
@@ -20,7 +20,6 @@ class GoogleLoginPage extends StatefulWidget {
 }
 
 class _GoogleLoginPageState extends State<GoogleLoginPage> {
-
   bool _rootAccess = false;
 
   Future<void> initRootRequest() async {
@@ -70,8 +69,8 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        textTheme: TextTheme(
-            title: TextStyle(fontSize: 20.0, fontFamily: 'Raleway')),
+        textTheme:
+            TextTheme(title: TextStyle(fontSize: 20.0, fontFamily: 'Raleway')),
         title: new Text('Login'),
         centerTitle: true,
       ),

@@ -15,15 +15,6 @@ class TeamFragment extends StatefulWidget {
 class _TeamFragmentPage extends State<TeamFragment> {
   List<DeveloperModel> devList = new List();
 
-//  _TeamFragmentPage() {
-//    //developerDatabaseReference.onChildChanged.listen(_onEntryAdded);
-//    developerDatabaseReference.once().then((DataSnapshot snapshot){
-//      //print(snapshot.toString());
-//     // _onEntryAdded(snapshot);
-//    }
-//    );
-//  }
-
   @override
   void initState() {
     // TODO: implement initState
@@ -34,7 +25,6 @@ class _TeamFragmentPage extends State<TeamFragment> {
 
   _onEntryAdded(Event event) {
     setState(() {
-      //devList.add(new DeveloperModel.fromSnapshot(event.snapshot));
       snapshot = event.snapshot;
       Map<String, dynamic> usermap = snapshot.value.cast<String, dynamic>();
       usermap.forEach((string, dynamic) {
@@ -43,8 +33,7 @@ class _TeamFragmentPage extends State<TeamFragment> {
           devList.add(developerModel);
         });
       });
-      //devList.add(new DeveloperModel.fromSnapshot());
-      print(event.snapshot.value.toString());
+      //print(event.snapshot.value.toString());
     });
   }
 

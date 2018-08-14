@@ -231,7 +231,7 @@ class _CompletedPage extends State<CompletedFragment> {
         });
   }
 
-  Future<Null> _loadDeveloperProfile(String email) async{
+  Future<Null> _loadDeveloperProfile(String email) async {
     FirebaseDatabase.instance
         .reference()
         .child('Developers')
@@ -256,7 +256,7 @@ class _CompletedPage extends State<CompletedFragment> {
         devPhotoUrl = developerModel.photoUrl;
         devDonationUrl = developerModel.donationUrl;
         devDescription = developerModel.description;
-        if(developerModel != null){
+        if (developerModel != null) {
           setState(() {
             devName = developerModel.name;
             devEmail = developerModel.email;
