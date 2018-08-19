@@ -35,7 +35,7 @@ class _HomeFragmentState extends State<HomeFragment> {
 
         dirStatus = await TwrpbuilderPlugin.mkDir('TWRPBuilderF');
 
-        await TwrpbuilderPlugin.cp('/system/build.prop', 'TWRPBU/build.prop');
+        await TwrpbuilderPlugin.cp('/system/build.prop', 'TWRPBuilderF/build.prop');
         bool isOldMtk = await TwrpbuilderPlugin.isOldMtk;
         String recoveryMount = await TwrpbuilderPlugin.getRecoveryMount();
         print(isOldMtk);
