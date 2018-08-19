@@ -1,88 +1,183 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_permissions/simple_permissions.dart';
 import 'package:twrp_builder/pages/login_page.dart';
 import 'package:twrpbuilder_plugin/twrpbuilder_plugin.dart';
 
-class HomeFragment extends StatefulWidget{
-
+class HomeFragment extends StatefulWidget {
   @override
   _HomeFragmentState createState() => new _HomeFragmentState();
 }
 
 class _HomeFragmentState extends State<HomeFragment> {
+  static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   String dirStatus = "";
-  ///These are to test the output
-  ///
-  String loog2;
-  String loog3;
-  String loog4;
-  String loog5;
-  String loog6;
-  String loog7;
-  bool loog8;
-  String loog9;
+
+  String _brand;
+  String _board;
+  String _abi;
+  String _fingerPrint;
+  String _model;
+  String _product;
+
+  bool rootStatus;
 
   Future<void> _createDir() async {
-    dirStatus = await TwrpbuilderPlugin.mkDir('TWRPBU'); ///TWRPBU is the name of the directory to be created
-    await TwrpbuilderPlugin.cp('/system/build.prop', 'TWRPBU/build.prop');
-    String log = await TwrpbuilderPlugin.command('ls');
-    String log2 = await TwrpbuilderPlugin.getBuildBrand;
-    String log3 = await TwrpbuilderPlugin.getBuildBoard;
-    String log4 = await TwrpbuilderPlugin.getBuildAbi;
-    String log5 = await TwrpbuilderPlugin.getBuildFingerprint;
-    String log6 = await TwrpbuilderPlugin.getBuildModel;
-    String log7 = await TwrpbuilderPlugin.getBuildProduct;
-    bool log8 = await TwrpbuilderPlugin.isOldMtk;
-    String log9 = await TwrpbuilderPlugin.suCommand('find /dev/block/platform -type d -name by-name');
-    String log10 = await TwrpbuilderPlugin.getRecoveryMount();
+
+    if (rootStatus) {
+      bool requestStatus = await SimplePermissions
+          .requestPermission(Permission.WriteExternalStorage);
+      if (requestStatus) {
+        _showLoading();
+
+        dirStatus = await TwrpbuilderPlugin.mkDir('TWRPBuilderF');
+
+        await TwrpbuilderPlugin.cp('/system/build.prop', 'TWRPBU/build.prop');
+        bool isOldMtk = await TwrpbuilderPlugin.isOldMtk;
+        String recoveryMount = await TwrpbuilderPlugin.getRecoveryMount();
+        print(isOldMtk);
+        print(recoveryMount);
+        Navigator.of(context).pop();
+      } else {
+        print('Storage permissions denied!');
+      }
+    } else {
+      showDialog<Null>(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Info'),
+              content: Text('Either your device is not rooted or root permissions are not granted.'),
+              actions: <Widget>[
+                FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Run in non-root mode')),
+                FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Close')),
+              ],
+            );
+          });
+      print('Device is not rooted or root permissions not granted! -_^');
+    }
+  }
+
+  Future<Null> _showLoading() async {
+    return showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              content: Container(
+                height: 60.0,
+                width: 60.0,
+                alignment: Alignment.centerLeft,
+                child: Row(
+                  children: <Widget>[
+                    CircularProgressIndicator(),
+                    Padding(padding: EdgeInsets.only(left: 8.0, right: 8.0)),
+                    Text('Please wait...')
+                  ],
+                ),
+              )
+          );
+        });
+  }
+
+  Future<Null> _loadDeviceDetails() async {
+    _showLoading();
+    String brand = await TwrpbuilderPlugin.getBuildBrand;
+    String board = await TwrpbuilderPlugin.getBuildBoard;
+    String abi = await TwrpbuilderPlugin.getBuildAbi;
+    String fingerPrint = await TwrpbuilderPlugin.getBuildFingerprint;
+    String model = await TwrpbuilderPlugin.getBuildModel;
+    String product = await TwrpbuilderPlugin.getBuildProduct;
 
     setState(() {
-      loog2 = log2;
-      loog3 = log3;
-      loog4 = log4;
-      loog5 = log5;
-      loog6 = log6;
-      loog7 = log7;
-      loog8 = log8;
-      loog9 = log9;
+      _brand = brand;
+      _board = board;
+      _abi = abi;
+      _fingerPrint = fingerPrint;
+      _model = model;
+      _product = product;
+      Navigator.of(context).pop();
     });
+  }
 
-    print(dirStatus);
-    print(log);
-    print(log2);
-    print(log3);
-    print(log4);
-    print(log5);
-    print(log6);
-    print(log7);
-    print(log8);
-    print(log9);
-    print(log10);
+  Future<Null> _loadPrefs() async {
+    final SharedPreferences prefs = await _prefs;
+    rootStatus = prefs.getBool('isRootGranted');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDeviceDetails();
+    _loadPrefs();
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new Scaffold(
-      body: new Center(
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            Text('Directory status: $dirStatus'),
-            Text('Brand: $loog2'),
-            Text('Board: $loog3'),
-            Text('Abi: $loog4'),
-            Text('Fingerprint: $loog5'),
-            Text('Model: $loog6'),
-            Text('Product: $loog7'),
-            Text('Is old mtk: $loog8'),
-            Text('Recovery path: $loog9'),
-            MaterialButton(onPressed: _createDir, color: Colors.blue, child: Text('Backup'),),
+            ListTile(
+              title: Text('Brand', style: TextStyle(
+                      fontSize: 16.0, fontWeight: FontWeight.w700)),
+              subtitle: Text(_brand, style: TextStyle(
+                  fontSize: 16.0, fontWeight: FontWeight.w600)),
+            ),
+            ListTile(
+              title: Text('Board', style: TextStyle(
+                  fontSize: 16.0, fontWeight: FontWeight.w700)),
+              subtitle: Text(_board, style: TextStyle(
+                  fontSize: 16.0, fontWeight: FontWeight.w600)),
+            ),
+            ListTile(
+              title: Text('Model', style: TextStyle(
+                  fontSize: 16.0, fontWeight: FontWeight.w700)),
+              subtitle: Text(_model, style: TextStyle(
+                  fontSize: 16.0, fontWeight: FontWeight.w600)),
+            ),
+            ListTile(
+              title: Text('Product', style: TextStyle(
+                  fontSize: 16.0, fontWeight: FontWeight.w700)),
+              subtitle: Text(_product, style: TextStyle(
+                  fontSize: 16.0, fontWeight: FontWeight.w600)),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                MaterialButton(
+                  onPressed: _createDir,
+                  color: Colors.blue,
+                  child: Text('Backup'),
+                ),
+              ],
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.all(16.0),
+              subtitle: Text("You can make request one time only from this device. If you're facing any issues then please contact via XDA.", style: TextStyle(
+                  fontSize: 16.0, fontWeight: FontWeight.w600)),
+            ),
           ],
         ),
-      ),
+      )
     );
   }
 }

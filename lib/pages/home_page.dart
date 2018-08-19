@@ -105,7 +105,7 @@ class HomePageState extends State<HomePage> {
         builder: (BuildContext context) {
           return AboutDialog(
             applicationName: 'Twrp Builder',
-            applicationVersion: '1.2',
+            applicationVersion: '1.3',
             applicationLegalese: 'MIT License',
             children: <Widget>[
               Padding(

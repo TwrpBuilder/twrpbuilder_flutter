@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:twrpbuilder_plugin/twrpbuilder_plugin.dart';
 
 import 'home_page.dart';
@@ -12,7 +13,6 @@ final GoogleSignIn _googleSignIn = new GoogleSignIn();
 String name = "";
 String email = "";
 String userProfile = "";
-bool rootStatus;
 
 class GoogleLoginPage extends StatefulWidget {
   @override
@@ -20,14 +20,13 @@ class GoogleLoginPage extends StatefulWidget {
 }
 
 class _GoogleLoginPageState extends State<GoogleLoginPage> {
-  bool _rootAccess = false;
+
+  static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   Future<void> initRootRequest() async {
     bool rootAccess = await TwrpbuilderPlugin.rootAccess;
-    setState(() {
-      _rootAccess = rootAccess;
-      rootStatus = rootAccess;
-    });
+    final SharedPreferences prefs = await _prefs;
+    prefs.setBool("isRootGranted", rootAccess);
   }
 
   Future<FirebaseUser> _signInWithGoogle() async {
