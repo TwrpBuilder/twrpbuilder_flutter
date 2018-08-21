@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,21 +30,6 @@ class _HomeFragmentState extends State<HomeFragment> {
 
   String backupStatus = "no";
 
-  Future<Null> _loadProp() async {
-    String propData = await TwrpbuilderPlugin.buildProp;
-    await TwrpbuilderPlugin
-        .createBuildProp('build.prop', propData)
-        .whenComplete(() {
-      print('build.prop successfully created!');
-    }).catchError((e) {
-      print('Error: $e');
-      setState(() {
-        backupStatus = 'done';
-      });
-      _showInfoDialog("build.prop", e.message);
-    });
-  }
-
   Future<void> _createBackup() async {
     setState(() {
       backupStatus = 'started';
@@ -57,12 +43,17 @@ class _HomeFragmentState extends State<HomeFragment> {
       if (requestStatus) {
         dirStatus = await TwrpbuilderPlugin.mkDir('TWRPBuilderF');
 
+        String propData = await TwrpbuilderPlugin.buildProp;
         await TwrpbuilderPlugin
-            .cp('/system/build.prop', 'TWRPBuilderF/build.prop')
-            .catchError((e) {
-          print('error:$e');
-          _showInfoDialog("Warning", e.message);
-          _loadProp();
+            .createBuildProp('build.prop', propData)
+            .whenComplete(() {
+          print('build.prop successfully created!');
+        }).catchError((e) {
+          print('Error: $e');
+          setState(() {
+            backupStatus = 'failed';
+          });
+          _showInfoDialog("Backup failed!", e.message);
         });
 
         String recoveryMount = await TwrpbuilderPlugin.getRecoveryMount();
@@ -74,29 +65,40 @@ class _HomeFragmentState extends State<HomeFragment> {
         if (iSOldMTK) {
           await TwrpbuilderPlugin.suCommand(
               "dd if=$recoveryMount bs=20000000 count=1 of=$sdcard/TWRPBuilderF/recovery.img ; cat /proc/dumchar > $sdcard/TWRPBuilderF/mounts ; cd $sdcard/TWRPBuilderF && tar -c recovery.img build.prop mounts > $sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar ");
-          bool status = await TwrpbuilderPlugin.compressGzipFile("$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar", "$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar.gz");
-          if(status){
+          bool status = await TwrpbuilderPlugin.compressGzipFile(
+              '$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar ',
+              '$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar.gz ');
+          print('$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar ');
+          if (!status) {
             _showInfoDialog("Done", "Backup completed!");
             setState(() {
               backupStatus = "done";
             });
-          }else {
+          } else {
+            setState(() {
+              backupStatus = "failed";
+            });
             _showInfoDialog("Error!", "Backup failed");
           }
         } else {
           await TwrpbuilderPlugin.suCommand(
               "dd if=$recoveryMount of=$sdcard/TWRPBuilderF/recovery.img ; ls -la `find /dev/block/platform/ -type d -name \"by-name\"` > $sdcard/TWRPBuilderF/mounts ; cd $sdcard/TWRPBuilderF && tar -c recovery.img build.prop mounts > $sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar ");
-          bool status = await TwrpbuilderPlugin.compressGzipFile("$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar", "$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar.gz");
-          if(status){
+          bool status = await TwrpbuilderPlugin.compressGzipFile(
+              '$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar ',
+              '$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar.gz ');
+          print('$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar ');
+          if (!status) {
             _showInfoDialog("Done", "Backup completed!");
             setState(() {
               backupStatus = "done";
             });
-          }else {
+          } else {
+            setState(() {
+              backupStatus = "failed";
+            });
             _showInfoDialog("Error!", "Backup failed");
           }
         }
-
       } else {
         print('Storage permissions denied!');
       }
@@ -139,12 +141,12 @@ class _HomeFragmentState extends State<HomeFragment> {
           .createBuildProp('build.prop', propData)
           .whenComplete(() {
         print('build.prop successfully created!');
-        _chooseFile();
+        _wait();
       }).catchError((e) {
         print('Error: $e');
         _showInfoDialog("Fatal error", e.message);
         setState(() {
-          backupStatus = "done";
+          backupStatus = "failed";
         });
       });
     } else {
@@ -152,18 +154,44 @@ class _HomeFragmentState extends State<HomeFragment> {
     }
   }
 
-  Future<Null> _chooseFile() async {
-    String path = await DocumentChooser.chooseDocument();
-    await TwrpbuilderPlugin
-        .cp(path, 'TWRPBuilderF/recovery.img')
-        .whenComplete(() {})
-        .catchError((e) {
-      print('error:$e');
-      _showInfoDialog("Error", e.message);
-      setState(() {
-        backupStatus = "done";
-      });
+  Future _wait() async {
+    await _chooseFile();
+  }
+
+  _zipFiles() async {
+    await TwrpbuilderPlugin.zip(
+        "$sdcard/TWRPBuilderF/build.prop,$sdcard/TWRPBuilderF/recovery.img",
+        "/TWRPBuilderF/TwrpBuilderRecoveryBackup.zip");
+    setState(() {
+      backupStatus = "done";
     });
+    _showInfoDialog("Backup complete",
+        "Please check if $sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.zip is there or not");
+  }
+
+  _chooseFile() async {
+    String path = await DocumentChooser.chooseDocument();
+
+    await _copyFile(path);
+    await _zipFiles();
+
+//    await TwrpbuilderPlugin
+//        .cp(path, 'TWRPBuilderF/recovery.img')
+//        .whenComplete(() {
+//          _zipFiles();
+//    })
+//        .catchError((e) {
+//      print('error:$e');
+//      _showInfoDialog("Error", e.message);
+//      setState(() {
+//        backupStatus = "done";
+//      });
+//    });
+  }
+
+  _copyFile(String path) async {
+    var recovery = File(path);
+    await recovery.copy("$sdcard/TWRPBuilderF/recovery.img");
   }
 
   Future<bool> _isOldMtk() async {
