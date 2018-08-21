@@ -24,42 +24,79 @@ class _HomeFragmentState extends State<HomeFragment> {
   String _product;
 
   bool rootStatus;
+  bool iSOldMTK;
+  String sdcard;
+
+  String backupStatus = "no";
 
   Future<Null> _loadProp() async {
     String propData = await TwrpbuilderPlugin.buildProp;
     await TwrpbuilderPlugin
         .createBuildProp('build.prop', propData)
-        .catchError((e) {
+        .whenComplete(() {
+      print('build.prop successfully created!');
+    }).catchError((e) {
       print('Error: $e');
-      Navigator.of(context).pop();
-      _showWarningDialog(e.message);
+      setState(() {
+        backupStatus = 'done';
+      });
+      _showInfoDialog("build.prop", e.message);
     });
   }
 
   Future<void> _createBackup() async {
+    setState(() {
+      backupStatus = 'started';
+    });
     bool requestStatus = await SimplePermissions
         .requestPermission(Permission.WriteExternalStorage);
 
+    sdcard = await TwrpbuilderPlugin.getSdCard;
+
     if (rootStatus) {
       if (requestStatus) {
-        _showLoading();
-
         dirStatus = await TwrpbuilderPlugin.mkDir('TWRPBuilderF');
 
         await TwrpbuilderPlugin
             .cp('/system/build.prop', 'TWRPBuilderF/build.prop')
             .catchError((e) {
           print('error:$e');
-          Navigator.of(context).pop();
-          _showWarningDialog(e.message);
+          _showInfoDialog("Warning", e.message);
           _loadProp();
         });
 
-        bool isOldMtk = await TwrpbuilderPlugin.isOldMtk;
         String recoveryMount = await TwrpbuilderPlugin.getRecoveryMount();
-        print(isOldMtk);
+        print(_isOldMtk());
         print(recoveryMount);
-        Navigator.of(context).pop();
+
+        iSOldMTK = await _isOldMtk();
+
+        if (iSOldMTK) {
+          await TwrpbuilderPlugin.suCommand(
+              "dd if=$recoveryMount bs=20000000 count=1 of=$sdcard/TWRPBuilderF/recovery.img ; cat /proc/dumchar > $sdcard/TWRPBuilderF/mounts ; cd $sdcard/TWRPBuilderF && tar -c recovery.img build.prop mounts > $sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar ");
+          bool status = await TwrpbuilderPlugin.compressGzipFile("$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar", "$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar.gz");
+          if(status){
+            _showInfoDialog("Done", "Backup completed!");
+            setState(() {
+              backupStatus = "done";
+            });
+          }else {
+            _showInfoDialog("Error!", "Backup failed");
+          }
+        } else {
+          await TwrpbuilderPlugin.suCommand(
+              "dd if=$recoveryMount of=$sdcard/TWRPBuilderF/recovery.img ; ls -la `find /dev/block/platform/ -type d -name \"by-name\"` > $sdcard/TWRPBuilderF/mounts ; cd $sdcard/TWRPBuilderF && tar -c recovery.img build.prop mounts > $sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar ");
+          bool status = await TwrpbuilderPlugin.compressGzipFile("$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar", "$sdcard/TWRPBuilderF/TwrpBuilderRecoveryBackup.tar.gz");
+          if(status){
+            _showInfoDialog("Done", "Backup completed!");
+            setState(() {
+              backupStatus = "done";
+            });
+          }else {
+            _showInfoDialog("Error!", "Backup failed");
+          }
+        }
+
       } else {
         print('Storage permissions denied!');
       }
@@ -82,6 +119,9 @@ class _HomeFragmentState extends State<HomeFragment> {
                 FlatButton(
                     onPressed: () {
                       Navigator.of(context).pop();
+                      setState(() {
+                        backupStatus = "done";
+                      });
                     },
                     child: Text('Close')),
               ],
@@ -93,19 +133,19 @@ class _HomeFragmentState extends State<HomeFragment> {
 
   Future<Null> _runNonRootMode(bool requestStatus) async {
     if (requestStatus) {
-      _showLoading();
       dirStatus = await TwrpbuilderPlugin.mkDir('TWRPBuilderF');
       String propData = await TwrpbuilderPlugin.buildProp;
       await TwrpbuilderPlugin
           .createBuildProp('build.prop', propData)
           .whenComplete(() {
         print('build.prop successfully created!');
-        Navigator.of(context).pop();
         _chooseFile();
       }).catchError((e) {
         print('Error: $e');
-        Navigator.of(context).pop();
-        _showWarningDialog(e.message);
+        _showInfoDialog("Fatal error", e.message);
+        setState(() {
+          backupStatus = "done";
+        });
       });
     } else {
       print('Storage permisisons not granted -_^');
@@ -114,28 +154,31 @@ class _HomeFragmentState extends State<HomeFragment> {
 
   Future<Null> _chooseFile() async {
     String path = await DocumentChooser.chooseDocument();
-    _showLoading();
     await TwrpbuilderPlugin
         .cp(path, 'TWRPBuilderF/recovery.img')
-        .whenComplete(() {
-      Navigator.of(context).pop();
+        .whenComplete(() {})
+        .catchError((e) {
+      print('error:$e');
+      _showInfoDialog("Error", e.message);
+      setState(() {
+        backupStatus = "done";
+      });
     });
   }
 
-  Future<Null> _showWarningDialog(String error) async {
+  Future<bool> _isOldMtk() async {
+    return await TwrpbuilderPlugin.isOldMtk;
+  }
+
+  Future<Null> _showInfoDialog(String title, String error) async {
     return showDialog<Null>(
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Error'),
+            title: Text('$title'),
             content: Text('$error'),
             actions: <Widget>[
-              FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Run in non-root mode')),
               FlatButton(
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -238,11 +281,13 @@ class _HomeFragmentState extends State<HomeFragment> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              MaterialButton(
-                onPressed: _createBackup,
-                color: Colors.blue,
-                child: Text('Backup'),
-              ),
+              backupStatus == "started"
+                  ? CircularProgressIndicator()
+                  : MaterialButton(
+                      onPressed: _createBackup,
+                      color: Colors.blue,
+                      child: Text('Backup'),
+                    ),
             ],
           ),
           ListTile(
